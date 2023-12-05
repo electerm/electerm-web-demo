@@ -4,6 +4,8 @@ import '../../../node_modules/xterm/css/xterm.css'
 import '../electerm-react/common/trzsz'
 import Main from '../web-components/web-main'
 import { notification } from 'antd'
+import '../demo/demo.styl'
+
 notification.config({
   placement: 'bottomRight'
 })

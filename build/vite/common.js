@@ -24,6 +24,10 @@ export const version = pack.version
 export const viewPath = resolve(cwd, 'src/client/views')
 export const staticPaths = [
   {
+    dir: resolve(cwd, 'src/client/statics'),
+    path: '/'
+  },
+  {
     dir: resolve(cwd, 'node_modules/vscode-icons/icons'),
     path: '/icons'
   },
@@ -52,6 +56,7 @@ export const base = () => {
     home: '/home/electerm',
     server: h,
     cdn: h,
+    query: {},
     stylus: loadDevStylus()
   }
 }
