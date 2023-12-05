@@ -10,7 +10,7 @@ const timeStart = Date.now()
 
 // echo('clean')
 // exec('npm run clean')
-mkdir('-p', 'dist/assets/iTerm2-Color-Schemes')
+mkdir('-p', 'public/iTerm2-Color-Schemes')
 echo('js/css file')
 exec('npm run vite-build')
 echo('copy file')

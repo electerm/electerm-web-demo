@@ -1,0 +1,721 @@
+{
+  "bookmarks": [
+    {
+      "id": "-5R-D3Y",
+      "title": "local-ls1(1)raw",
+      "type": "local",
+      "term": "ansi",
+      "runScripts": [
+        {
+          "delay": 500,
+          "script": "ls"
+        }
+      ],
+      "proxy": "",
+      "displayRaw": true
+    },
+    {
+      "id": "2dklEji",
+      "title": "",
+      "host": "10.10.10.10",
+      "username": "electerm",
+      "authType": "password",
+      "password": "B19DyT_4z",
+      "port": 22,
+      "loginScriptDelay": 500,
+      "encode": "utf-8",
+      "enableSsh": true,
+      "envLang": "en_US.UTF-8",
+      "term": "xterm-256color",
+      "sshTunnel": "",
+      "proxy": ""
+    },
+    {
+      "id": "3U0Hs5h",
+      "title": "",
+      "host": "10.10.10.10",
+      "username": "eeeeee",
+      "authType": "password",
+      "password": "eeeeeeong262004",
+      "port": 22,
+      "loginScriptDelay": 500,
+      "encode": "utf-8",
+      "enableSsh": true,
+      "envLang": "en_US.UTF-8",
+      "term": "xterm-256color",
+      "sshTunnels": [
+        {}
+      ],
+      "proxy": ""
+    },
+    {
+      "id": "54vs1jQ",
+      "title": "",
+      "host": "192.168.2.26",
+      "username": "zxd",
+      "password": "zxd",
+      "port": 23,
+      "type": "telnet",
+      "term": "xterm-256color",
+      "proxy": ""
+    },
+    {
+      "id": "71DdKyq",
+      "title": "26nokey,no pass",
+      "host": "192.168.2.26",
+      "username": "zxd",
+      "authType": "password",
+      "port": 22,
+      "loginScriptDelay": 500,
+      "encode": "utf-8",
+      "enableSsh": true,
+      "envLang": "en_US.UTF-8",
+      "term": "xterm-256color",
+      "sshTunnels": [
+        {}
+      ],
+      "connectionHoppings": [],
+      "proxy": ""
+    },
+    {
+      "id": "875Hy-I",
+      "title": "",
+      "host": "10.10.10.10",
+      "username": "electerm_darwin",
+      "authType": "password",
+      "password": "ByeilgZkX",
+      "port": 22,
+      "loginScriptDelay": 500,
+      "encode": "utf-8",
+      "enableSsh": true,
+      "envLang": "en_US.UTF-8",
+      "term": "xterm-256color",
+      "sshTunnel": "",
+      "proxy": ""
+    },
+    {
+      "id": "8FWrMsV",
+      "title": "",
+      "host": "192.168.2.26",
+      "username": "zxd",
+      "authType": "password",
+      "password": "zxd",
+      "port": 22,
+      "loginScriptDelay": 500,
+      "encode": "utf-8",
+      "enableSsh": true,
+      "envLang": "en_US.UTF-8",
+      "term": "xterm-256color",
+      "sshTunnels": [
+        {
+          "sshTunnel": "forwardLocalToRemote",
+          "sshTunnelRemotePort": 1444,
+          "sshTunnelLocalPort": 1333
+        }
+      ],
+      "connectionHoppings": [
+        {
+          "host": "192.168.2.27",
+          "username": "zxd",
+          "authType": "password",
+          "port": 22,
+          "password": "zxd",
+          "id": "udz-uKE"
+        }
+      ],
+      "proxy": ""
+    },
+    {
+      "id": "B0FXsa3",
+      "title": "",
+      "host": "test.com",
+      "username": "root",
+      "authType": "password",
+      "password": "root",
+      "port": 22,
+      "loginScriptDelay": 500,
+      "encode": "utf-8",
+      "enableSsh": true,
+      "envLang": "en_US.UTF-8",
+      "term": "xterm-256color",
+      "sshTunnel": "",
+      "proxy": ""
+    },
+    {
+      "id": "CfXzl3J",
+      "title": "",
+      "path": "/dev/tty.Bluetooth-Incoming-Port",
+      "baudRate": 9600,
+      "dataBits": 8,
+      "stopBits": 1,
+      "parity": "none",
+      "lock": true,
+      "rtscts": false,
+      "xon": false,
+      "xoff": false,
+      "xany": false,
+      "type": "serial",
+      "term": "xterm-256color",
+      "proxy": ""
+    },
+    {
+      "id": "DqF66zJ",
+      "title": "ssh-tunnel",
+      "host": "10.10.10.10",
+      "username": "eeeeee",
+      "authType": "password",
+      "password": "eeeeeeong266774",
+      "port": 22,
+      "loginScriptDelay": 500,
+      "encode": "utf-8",
+      "enableSsh": true,
+      "envLang": "en_US.UTF-8",
+      "term": "xterm-256color",
+      "sshTunnels": [
+        {
+          "sshTunnelRemotePort": 9100,
+          "sshTunnelLocalPort": 8700,
+          "sshTunnel": "forwardLocalToRemote"
+        }
+      ],
+      "connectionHoppings": [],
+      "proxy": ""
+    },
+    {
+      "id": "EMbRQhI",
+      "title": "26",
+      "host": "192.168.2.26",
+      "username": "zxd",
+      "authType": "password",
+      "password": "zxd",
+      "port": 22,
+      "loginScriptDelay": 500,
+      "encode": "utf-8",
+      "enableSsh": true,
+      "envLang": "en_US.UTF-8",
+      "term": "xterm-256color",
+      "sshTunnels": [
+        {}
+      ],
+      "connectionHoppings": [],
+      "proxy": ""
+    },
+    {
+      "id": "FGbJVyn",
+      "title": "26(3)",
+      "host": "192.168.2.26",
+      "username": "zxd",
+      "authType": "password",
+      "password": "zxd",
+      "port": 22,
+      "loginScriptDelay": 500,
+      "encode": "utf-8",
+      "enableSsh": true,
+      "envLang": "en_US.UTF-8",
+      "term": "xterm-256color",
+      "sshTunnels": [
+        {}
+      ],
+      "connectionHoppings": [],
+      "proxy": "",
+      "runScripts": [
+        {
+          "delay": 1,
+          "script": "ls"
+        }
+      ]
+    },
+    {
+      "id": "JeXvfzy",
+      "title": "(11)",
+      "host": "10.10.10.10",
+      "username": "eeeeee",
+      "authType": "password",
+      "password": "eeeeeeong262004",
+      "port": 22,
+      "loginScriptDelay": 500,
+      "encode": "utf-8",
+      "enableSsh": true,
+      "envLang": "en_US.UTF-8",
+      "term": "xterm-256color",
+      "sshTunnel": "",
+      "sshTunnels": [
+        {}
+      ],
+      "connectionHoppings": [],
+      "proxy": "",
+      "runScripts": [
+        {
+          "script": "ls"
+        }
+      ]
+    },
+    {
+      "id": "SQTs_hR",
+      "title": "28",
+      "host": "192.168.2.28",
+      "username": "zxd",
+      "authType": "password",
+      "password": "zxd",
+      "port": 22,
+      "loginScriptDelay": 500,
+      "encode": "utf-8",
+      "enableSsh": true,
+      "envLang": "en_US.UTF-8",
+      "term": "xterm-256color",
+      "sshTunnels": [
+        {}
+      ],
+      "connectionHoppings": [],
+      "proxy": ""
+    },
+    {
+      "id": "TfJ-uYm",
+      "title": "",
+      "host": "test1.com",
+      "username": "test",
+      "authType": "password",
+      "password": "test",
+      "port": 22,
+      "loginScriptDelay": 500,
+      "encode": "utf-8",
+      "enableSsh": true,
+      "envLang": "en_US.UTF-8",
+      "term": "xterm-256color",
+      "sshTunnel": "",
+      "proxy": ""
+    },
+    {
+      "id": "VZKuymT",
+      "title": "",
+      "host": "test.com",
+      "username": "root",
+      "password": "guest",
+      "port": 23,
+      "type": "telnet",
+      "term": "xterm-256color",
+      "proxy": ""
+    },
+    {
+      "id": "W4T6bUn",
+      "title": "ls-color",
+      "runScripts": [
+        {
+          "script": "666"
+        }
+      ],
+      "color": "#28a745",
+      "type": "local",
+      "term": "xterm-256color",
+      "displayRaw": false
+    },
+    {
+      "id": "YlPHLJk",
+      "title": "",
+      "host": "192.168.2.26",
+      "username": "zxd",
+      "authType": "privateKey",
+      "port": 22,
+      "loginScriptDelay": 500,
+      "encode": "utf-8",
+      "enableSsh": true,
+      "envLang": "en_US.UTF-8",
+      "term": "xterm-256color",
+      "sshTunnels": [
+        {}
+      ],
+      "connectionHoppings": [],
+      "privateKey": "-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1ccccccc5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW\nQyNTUxOQAAACBRKUW0eLWEJ10PVzQQi75MiTz8Vkbgvsruoe+8+Sm/nQAAAJj8UrU7/FK1\nOwAAAAtzc2gtZWQyNTUxOQAAAcccccLWEJ10PVzQQi75MiTz8Vkbgvsruoe+8+Sm/nQ\nAAAEBSZ+n/L+JQ1cccccEiquspXpLUkkt4nE9b7/hlEpRbR4tYQnXQ9XNBCLvkyJ\nPPxWRuC+yu6h77z5Kb+dAAAAEHp4ZG9uZ0cc5jb20BAgMEBQ==\n-----END OPENSSH PRIVATE KEY-----\n",
+      "proxy": ""
+    },
+    {
+      "id": "ZmdKIQe",
+      "title": "",
+      "host": "10.10.10.10",
+      "username": "electerm_linux",
+      "authType": "password",
+      "password": "HJ5BegWkQ",
+      "port": 22,
+      "loginScriptDelay": 500,
+      "encode": "utf-8",
+      "enableSsh": true,
+      "envLang": "en_US.UTF-8",
+      "term": "xterm-256color",
+      "sshTunnel": "",
+      "proxy": ""
+    },
+    {
+      "id": "b5-2OkC",
+      "title": "",
+      "host": "10.10.10.10",
+      "username": "electerm_win32",
+      "authType": "password",
+      "password": "ryg2xgWJm",
+      "port": 22,
+      "loginScriptDelay": 500,
+      "encode": "utf-8",
+      "enableSsh": true,
+      "envLang": "en_US.UTF-8",
+      "term": "xterm-256color",
+      "sshTunnel": "",
+      "proxy": ""
+    },
+    {
+      "id": "el54Wh8",
+      "title": "(8)",
+      "host": "10.10.10.10",
+      "username": "eeeeee",
+      "authType": "password",
+      "password": "eeeeeeong262004",
+      "port": 22,
+      "loginScriptDelay": 500,
+      "encode": "utf-8",
+      "enableSsh": true,
+      "envLang": "en_US.UTF-8",
+      "term": "xterm-256color",
+      "sshTunnels": [
+        {
+          "sshTunnel": "forwardRemoteToLocal",
+          "sshTunnelRemotePort": 1333,
+          "sshTunnelLocalPort": 1444
+        }
+      ],
+      "proxy": ""
+    },
+    {
+      "id": "hJrrbUT",
+      "title": "",
+      "host": "10.10.10.10",
+      "username": "root",
+      "authType": "password",
+      "password": "Zxd1010101010!",
+      "port": 22,
+      "loginScriptDelay": 500,
+      "encode": "utf-8",
+      "enableSsh": true,
+      "envLang": "en_US.UTF-8",
+      "term": "xterm-256color",
+      "sshTunnel": "",
+      "proxy": ""
+    },
+    {
+      "id": "jX3Xox9",
+      "title": "",
+      "host": "10.10.10.10",
+      "username": "electerm_linux",
+      "password": "HJ5BegWkQ",
+      "port": 23,
+      "type": "telnet",
+      "term": "xterm-256color",
+      "proxy": ""
+    },
+    {
+      "id": "klW6kS4",
+      "title": "",
+      "host": "10.10.10.10",
+      "username": "eeeee",
+      "authType": "password",
+      "password": "exe1212132132342",
+      "port": 22,
+      "loginScriptDelay": 500,
+      "encode": "utf-8",
+      "enableSsh": true,
+      "envLang": "en_US.UTF-8",
+      "term": "xterm-256color",
+      "sshTunnel": "",
+      "sshTunnels": [
+        {}
+      ],
+      "connectionHoppings": [],
+      "proxy": "",
+      "runScripts": [
+        {}
+      ]
+    },
+    {
+      "id": "mZQAsxG",
+      "title": "26-28",
+      "host": "192.168.2.26",
+      "username": "zxd",
+      "authType": "password",
+      "password": "zxd",
+      "port": 22,
+      "loginScriptDelay": 500,
+      "encode": "utf-8",
+      "enableSsh": true,
+      "envLang": "en_US.UTF-8",
+      "term": "xterm-256color",
+      "sshTunnels": [
+        {}
+      ],
+      "connectionHoppings": [
+        {
+          "host": "192.168.2.27",
+          "username": "zxd",
+          "authType": "password",
+          "port": 22,
+          "id": "NPs8MuN"
+        },
+        {
+          "host": "192.168.2.28",
+          "username": "zxd",
+          "authType": "password",
+          "port": 22,
+          "id": "wMFb4Mp"
+        }
+      ],
+      "proxy": ""
+    },
+    {
+      "id": "sDl7fqH",
+      "title": "serial1",
+      "path": "/dev/tty.Bluetooth-Incoming-Port",
+      "baudRate": 9600,
+      "dataBits": 8,
+      "stopBits": 1,
+      "parity": "none",
+      "lock": true,
+      "rtscts": false,
+      "xon": false,
+      "xoff": false,
+      "xany": false,
+      "type": "serial",
+      "term": "xterm-256color",
+      "proxy": ""
+    },
+    {
+      "id": "wR-FSWH",
+      "title": "",
+      "host": "10.10.10.10",
+      "username": "electerm_test",
+      "authType": "password",
+      "password": "yoY282vVy",
+      "port": 22,
+      "loginScriptDelay": 500,
+      "encode": "utf-8",
+      "enableSsh": true,
+      "envLang": "en_US.UTF-8",
+      "term": "xterm-256color",
+      "sshTunnel": "",
+      "proxy": ""
+    },
+    {
+      "id": "wmBdPyT",
+      "title": "test auto read key",
+      "host": "10.10.10.10",
+      "username": "eeeeee",
+      "authType": "password",
+      "port": 22,
+      "loginScriptDelay": 500,
+      "encode": "utf-8",
+      "enableSsh": true,
+      "envLang": "en_US.UTF-8",
+      "term": "xterm-256color",
+      "sshTunnels": [
+        {}
+      ],
+      "connectionHoppings": [],
+      "proxy": ""
+    },
+    {
+      "id": "xJeVsQB",
+      "title": "27",
+      "host": "192.168.2.27",
+      "username": "zxd",
+      "authType": "password",
+      "password": "zxd",
+      "port": 22,
+      "loginScriptDelay": 500,
+      "encode": "utf-8",
+      "enableSsh": true,
+      "envLang": "en_US.UTF-8",
+      "term": "xterm-256color",
+      "sshTunnels": [
+        {}
+      ],
+      "connectionHoppings": [],
+      "proxy": ""
+    },
+    {
+      "id": "yDa01LO",
+      "title": "local-ls",
+      "type": "local",
+      "term": "xterm-256color",
+      "runScripts": [
+        {
+          "delay": 500,
+          "script": "ls -al"
+        }
+      ],
+      "proxy": ""
+    },
+    {
+      "id": "yxecqym",
+      "title": "",
+      "host": "xx.com",
+      "username": "root",
+      "password": "guest",
+      "port": 23,
+      "type": "telnet",
+      "term": "xterm-256color",
+      "proxy": ""
+    }
+  ],
+  "bookmarkGroups": [
+    {
+      "id": "WBesQ8F",
+      "title": "telnet",
+      "bookmarkIds": [
+        "yxecqym",
+        "VZKuymT",
+        "3yNlDrK",
+        "VuL2feA"
+      ]
+    },
+    {
+      "id": "WLHCbpK",
+      "title": "serlalport",
+      "bookmarkIds": [
+        "sDl7fqH",
+        "CfXzl3J"
+      ]
+    },
+    {
+      "id": "_Hzer8E",
+      "title": "locals",
+      "bookmarkIds": [
+        "W4T6bUn",
+        "3BST-2e",
+        "-5R-D3Y",
+        "eVkQ98z",
+        "yDa01LO"
+      ]
+    },
+    {
+      "id": "default",
+      "title": "default",
+      "bookmarkIds": [
+        "JeXvfzy",
+        "FGbJVyn",
+        "QKllZVH",
+        "Y27LgUM",
+        "E-oNJ24",
+        "8FWrMsV",
+        "YlPHLJk",
+        "SQTs_hR",
+        "xJeVsQB",
+        "EMbRQhI",
+        "DqF66zJ",
+        "54vs1jQ",
+        "7BRe7y_",
+        "OY_W3t2",
+        "l8CDh7y",
+        "ES1E35g",
+        "ekVG6Ea",
+        "71DdKyq",
+        "RueWTQB",
+        "gmuoson",
+        "mZQAsxG",
+        "GAC5yeI",
+        "pocBJTc",
+        "Zbzy71X",
+        "jNGE1ZB",
+        "wmBdPyT",
+        "qX0991w",
+        "EjCRH0w",
+        "rMHGtv3",
+        "kJlShlq",
+        "SZ6uJ73",
+        "MpFozjP",
+        "EGkB0Jt",
+        "T5D7tDN",
+        "7d_skd9",
+        "YFA0c4E",
+        "DhJGfEe",
+        "hJrrbUT",
+        "jX3Xox9",
+        "klW6kS4"
+      ],
+      "bookmarkGroupIds": []
+    },
+    {
+      "id": "jJ-85PX",
+      "title": "test",
+      "bookmarkIds": [
+        "3U0Hs5h",
+        "TfJ-uYm",
+        "el54Wh8",
+        "B0FXsa3"
+      ]
+    },
+    {
+      "id": "teYJKS_",
+      "title": "electerm",
+      "bookmarkIds": [
+        "wR-FSWH",
+        "2dklEji",
+        "875Hy-I",
+        "ZmdKIQe",
+        "b5-2OkC"
+      ]
+    }
+  ],
+  "quickCommands": [
+    {
+      "id": "QqSuUVt",
+      "name": "PM2 list",
+      "command": "pm2 list",
+      "labels": [
+        "pm2",
+        "basic"
+      ],
+      "clickCount": 3
+    },
+    {
+      "id": "UIWOxyI",
+      "name": "ls nolabel",
+      "command": "ls",
+      "labels": [],
+      "clickCount": 1
+    },
+    {
+      "id": "ewL_-We",
+      "name": "npm run b",
+      "command": "npm run b",
+      "labels": [
+        "h5"
+      ],
+      "clickCount": 2
+    },
+    {
+      "id": "hqKHOYo",
+      "name": "git pull",
+      "command": "git pull",
+      "labels": [
+        "git"
+      ],
+      "clickCount": 8
+    },
+    {
+      "id": "kpNMwpC",
+      "name": "cd electerm.h5",
+      "command": "cd ~/dev/electerm.html5beta.com",
+      "labels": [
+        "cd"
+      ],
+      "clickCount": 7
+    },
+    {
+      "id": "mPj2Nnf",
+      "name": "ls",
+      "command": "ls",
+      "labels": [
+        "basic"
+      ]
+    }
+  ],
+  "serials": [{"path":"/dev/tty.Bluetooth-Incoming-Port"}],
+  "fsConstants": {"UV_FS_SYMLINK_DIR":1,"UV_FS_SYMLINK_JUNCTION":2,"O_RDONLY":0,"O_WRONLY":1,"O_RDWR":2,"UV_DIRENT_UNKNOWN":0,"UV_DIRENT_FILE":1,"UV_DIRENT_DIR":2,"UV_DIRENT_LINK":3,"UV_DIRENT_FIFO":4,"UV_DIRENT_SOCKET":5,"UV_DIRENT_CHAR":6,"UV_DIRENT_BLOCK":7,"S_IFMT":61440,"S_IFREG":32768,"S_IFDIR":16384,"S_IFCHR":8192,"S_IFBLK":24576,"S_IFIFO":4096,"S_IFLNK":40960,"S_IFSOCK":49152,"O_CREAT":512,"O_EXCL":2048,"UV_FS_O_FILEMAP":0,"O_NOCTTY":131072,"O_TRUNC":1024,"O_APPEND":8,"O_DIRECTORY":1048576,"O_NOFOLLOW":256,"O_SYNC":128,"O_DSYNC":4194304,"O_SYMLINK":2097152,"O_NONBLOCK":4,"S_IRWXU":448,"S_IRUSR":256,"S_IWUSR":128,"S_IXUSR":64,"S_IRWXG":56,"S_IRGRP":32,"S_IWGRP":16,"S_IXGRP":8,"S_IRWXO":7,"S_IROTH":4,"S_IWOTH":2,"S_IXOTH":1,"F_OK":0,"R_OK":4,"W_OK":2,"X_OK":1,"UV_FS_COPYFILE_EXCL":1,"COPYFILE_EXCL":1,"UV_FS_COPYFILE_FICLONE":2,"COPYFILE_FICLONE":2,"UV_FS_COPYFILE_FICLONE_FORCE":4,"COPYFILE_FICLONE_FORCE":4},
+  "config": {"keepaliveInterval":0,"rightClickSelectsWord":false,"pasteWhenContextMenu":false,"ctrlOrMetaOpenTerminalLink":false,"hotkey":"Control+2","sshReadyTimeout":50000,"scrollback":3000,"onStartSessions":[],"fontSize":16,"fontFamily":"mono, courier-new, courier, monospace","execWindows":"System32/WindowsPowerShell/v1.0/powershell.exe","execMac":"zsh","execLinux":"bash","execWindowsArgs":[],"execMacArgs":[],"execLinuxArgs":[],"enableGlobalProxy":false,"disableSshHistory":false,"disableTransferHistory":false,"terminalBackgroundImagePath":"","terminalBackgroundFilterOpacity":1,"terminalBackgroundFilterBlur":0,"terminalBackgroundFilterBrightness":1,"terminalBackgroundFilterGrayscale":0,"terminalBackgroundFilterContrast":1,"rendererType":"canvas","terminalType":"xterm-256color","keepaliveCountMax":10,"saveTerminalLogToFile":false,"checkUpdateOnStart":true,"cursorBlink":false,"cursorStyle":"block","useSystemTitleBar":true,"opacity":1,"defaultEditor":"","terminalWordSeparator":"./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~ ?","confirmBeforeExit":false,"initDefaultTabOnStart":true,"screenReaderMode":false,"autoRefreshWhenSwitchToSftp":false,"hideSshConfig":false,"addTimeStampToTermLog":false,"terminalTimeout":5000,"zoom":1,"debug":false,"theme":"default","syncSetting":{"lastUpdateTime":1699501259993,"autoSync":false},"terminalTypes":["xterm-256color","xterm-new","xterm-color","xterm-vt220","xterm","linux","vt100","ansi","rxvt"],"host":"127.0.0.1","language":"en_us","shortcuts":{},"proxy":"","customCss":"","keywords":[],"port":30975,"keywords":[{"keyword":"ls","color":"green"},{"keyword":"$","color":"green"}, {"keyword":"Downloads","color":"green"},{"keyword":"electerm demo terminal"},{"keyword":"Documents", "color":"green"}]},
+  "terminalThemes": [{"id":"default","name":"default","themeConfig":{"foreground":"#bbbbbb","background":"#141314","cursor":"#b5bd68","cursorAccent":"#1d1f21","selectionBackground":"rgba(255, 255, 255, 0.3)","black":"#575757","red":"#FF2C6D","green":"#19f9d8","yellow":"#FFB86C","blue":"#45A9F9","magenta":"#FF75B5","cyan":"#B084EB","white":"#CDCDCD","brightBlack":"#757575","brightRed":"#FF2C6D","brightGreen":"#19f9d8","brightYellow":"#FFCC95","brightBlue":"#6FC1FF","brightMagenta":"#FF9AC1","brightCyan":"#BCAAFE","brightWhite":"#E6E6E6"},"uiThemeConfig":{"main":"#141314","main-dark":"#000","main-light":"#2E3338","text":"#ddd","text-light":"#fff","text-dark":"#888","text-disabled":"#777","primary":"#08c","info":"#FFD166","success":"#06D6A0","error":"#EF476F","warn":"#E55934"}},{"id":"defaultLight","name":"default light","themeConfig":{"foreground":"#333333","background":"#ededed","cursor":"#b5bd68","cursorAccent":"#1d1f21","selectionBackground":"rgba(0, 0, 0, 0.3)","black":"#575757","red":"#FF2C6D","green":"#19f9d8","yellow":"#FFB86C","blue":"#45A9F9","magenta":"#FF75B5","cyan":"#B084EB","white":"#CDCDCD","brightBlack":"#757575","brightRed":"#FF2C6D","brightGreen":"#19f9d8","brightYellow":"#FFCC95","brightBlue":"#6FC1FF","brightMagenta":"#FF9AC1","brightCyan":"#BCAAFE","brightWhite":"#E6E6E6"},"uiThemeConfig":{"main":"#ededed","main-dark":"#cccccc","main-light":"#fefefe","text":"#555","text-light":"#777","text-dark":"#444","text-disabled":"#888","primary":"#08c","info":"#FFD166","success":"#06D6A0","error":"#EF476F","warn":"#E55934"}}]
+}

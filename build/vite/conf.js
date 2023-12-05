@@ -41,7 +41,7 @@ export default defineConfig({
   root: resolve(cwd),
   build: {
     emptyOutDir: false,
-    outDir: resolve(cwd, 'dist/assets'),
+    outDir: resolve(cwd, 'public'),
     rollupOptions: {
       input: buildInput(),
       // external: [
@@ -50,12 +50,26 @@ export default defineConfig({
       // ],
       output: {
         manualChunks: {
-          react: ['react', 'react-dom'],
+          react: ['react'],
+          'react-dom': ['react-dom'],
           'lodash-es': ['lodash-es'],
           antd: ['antd'],
           '@ant-design/icons': ['@ant-design/icons'],
-          xterm: ['xterm'],
-          manate: ['manate']
+          xterm: [
+            'xterm',
+            'xterm-addon-attach',
+            'xterm-addon-canvas',
+            'xterm-addon-fit',
+            'xterm-addon-ligatures',
+            'xterm-addon-search',
+            'xterm-addon-unicode11',
+            'xterm-addon-web-links',
+            'xterm-addon-webgl'
+          ],
+          '@electerm/electerm-themes': ['@electerm/electerm-themes'],
+          trzsz: ['trzsz'],
+          manate: ['manate'],
+          'zmodem.js': ['zmodem.js']
         },
         inlineDynamicImports: false,
         format: 'esm',
@@ -67,7 +81,7 @@ export default defineConfig({
             ? `css/${version}-${name}`
             : `images/${name}`
         },
-        dir: resolve(cwd, 'dist/assets')
+        dir: resolve(cwd, 'public')
       }
     }
   },

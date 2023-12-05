@@ -106,7 +106,7 @@ dist
 
 # custom
 /temp/
-/dist/
+/public/
 /work/
 /version
 /*.txt
@@ -117,3 +117,4 @@ dist
 /test-results
 /data
 /src/client/electerm-react
+.vercel

@@ -1,8 +1,16 @@
 /**
  * web worker
  */
-
+import { FakeWs } from '../demo/ws.js'
 self.insts = {}
+
+function safeJSONParse (str) {
+  try {
+    return JSON.parse(str)
+  } catch (e) {
+    return str
+  }
+}
 
 function createWs (
   type,
@@ -12,21 +20,17 @@ function createWs (
   config
 ) {
   // init gloabl ws
-  const { host, port, tokenElecterm, server = '' } = config
-  const s = server
-    ? server.replace(/https?:\/\//, '')
-    : `${host}:${port}`
-  const pre = server.startsWith('https') ? 'wss' : 'ws'
-  const wsUrl = `${pre}://${s}/${type}/${id}?sessionId=${sessionId}&sftpId=${sftpId}&token=${tokenElecterm}`
-  const ws = new WebSocket(wsUrl)
+  const { tokenElecterm } = config
+  const wsUrl = `ws://localhost:8080/${type}/${id}?sessionId=${sessionId}&sftpId=${sftpId}&token=${tokenElecterm}`
+  const ws = new FakeWs(wsUrl)
   ws.s = msg => {
     ws.send(JSON.stringify(msg))
   }
   ws.id = id
   ws.once = (callack, id) => {
     const func = (evt) => {
-      const arg = JSON.parse(evt.data)
-      if (id === arg.id) {
+      const arg = safeJSONParse(evt.data)
+      if (id === arg.id && arg.data) {
         callack(arg)
         ws.removeEventListener('message', func)
       }
@@ -71,7 +75,7 @@ async function onMsg (e) {
   } = e.data
   if (action === 'create') {
     const inst = self.insts[id]
-    if (inst instanceof WebSocket) {
+    if (inst instanceof FakeWs) {
       return send({
         action,
         id,

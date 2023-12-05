@@ -3,55 +3,20 @@ import {
   viewPath,
   env,
   staticPaths,
-  pack,
-  isProd,
   cwd,
-  isWin,
-  isMac
+  viewData
 } from './common.js'
 import express from 'express'
 import { createServer as createViteServer } from 'vite'
 import conf from './conf.js'
-import os from 'os'
-import copy from 'json-deep-copy'
-import proxy from 'express-http-proxy'
-import fsFunctions from '../../src/app/common/fs-functions.js'
-import { createToken } from '../../src/app/lib/jwt.js'
-import { logDir } from '../../src/app/server/session-log.js'
-import { loadDevStylus } from '../../src/app/lib/style.js'
 
 const devPort = env.DEV_PORT || 5570
 const devHost = env.DEV_HOST || '127.0.0.1'
-const port = env.PORT || 5577
-const host = env.HOST || '127.0.0.1'
 const h = `http://${devHost}:${devPort}`
-const tar = `http://${host}:${port}`
-const base = {
-  version: pack.version,
-  isDev: !isProd,
-  siteName: pack.name,
-  isWin,
-  isMac,
-  fsFunctions,
-  packInfo: pack,
-  home: os.homedir(),
-  server: h,
-  cdn: h,
-  stylus: loadDevStylus(),
-  sessionLogPath: logDir,
-  tokenElecterm: process.env.ENABLE_AUTH ? '' : createToken()
-}
 
 function handleIndex (req, res) {
-  const data = {
-    ...base,
-    query: req.query
-  }
   const view = 'index'
-  res.render(view, {
-    ...data,
-    _global: copy(data)
-  })
+  res.render(view, viewData())
 }
 
 function redirect (req, res) {
@@ -105,22 +70,6 @@ async function createServer () {
     console.log('cwd:', cwd)
     console.log(`server started at ${h}`)
   })
-  app.use(
-    '/api/login',
-    proxy(tar, {
-      proxyReqPathResolver: function (req) {
-        return '/api/login'
-      }
-    })
-  )
-  app.use(
-    '/api/get-constants',
-    proxy(tar, {
-      proxyReqPathResolver: function (req) {
-        return '/api/get-constants'
-      }
-    })
-  )
 }
 
 createServer()

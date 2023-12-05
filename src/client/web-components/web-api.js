@@ -1,5 +1,16 @@
 // window preload
 // import { message } from 'antd'
+import data from '../demo/init-data.json'
+import * as langMap from '@electerm/electerm-locales/esm/index.mjs'
+import {
+  funcs1,
+  funcs2
+} from '../demo/run-sync.js'
+import { dbAction } from '../demo/db.js'
+import { FakeWs } from '../demo/ws.js'
+import { css } from '../demo/css.js'
+
+window.WebSocket = FakeWs
 
 window.api = {
   getZoomFactor: () => 1,
@@ -48,13 +59,37 @@ window.api = {
     } else if (func === 'restart') {
       return window.location.reload()
     } else if (func === 'init') {
-      const d = await window.wsFetch({
-        action: 'runSync',
-        args,
-        func
+      return Promise.resolve({
+        config: data.config,
+        isPortable: true,
+        langs: Object.keys(langMap).map(id => {
+          return {
+            id,
+            ...langMap[id]
+          }
+        }),
+        langMap
       })
-      d.config.tokenElecterm = window.localStorage.getItem('tokenElecterm') || ''
-      return d
+    } else if (
+      typeof funcs1[func] !== 'undefined'
+    ) {
+      return Promise.resolve(funcs1[func])
+    } else if (
+      typeof funcs2[func] !== 'undefined'
+    ) {
+      return Promise.resolve(args[0])
+    } else if (func === 'dbAction') {
+      return Promise.resolve(
+        dbAction(...args)
+      )
+    } else if (func === 'toCss') {
+      return Promise.resolve(
+        css
+      )
+    } else if (func === 'fetch') {
+      return Promise.resolve(
+        'v0.0.0'
+      )
     }
     return window.wsFetch({
       action: 'runSync',
@@ -65,10 +100,20 @@ window.api = {
   runSync: (func, ...args) => {
     if (func === 'isMaximized') {
       return false
-    } if (func === 'isSencondInstance') {
+    } else if (func === 'isSencondInstance') {
+      return false
+    } else if (func === 'windowMove') {
       return false
     } else if (func === 'getLoadTime' || func === 'setLoadTime') {
       return 0
+    } else if (
+      typeof funcs1[func] !== 'undefined'
+    ) {
+      return Promise.resolve(funcs1[func])
+    } else if (
+      typeof funcs2[func] !== 'undefined'
+    ) {
+      return Promise.resolve(args[0])
     }
     return window.wsFetch({
       action: 'runSync',

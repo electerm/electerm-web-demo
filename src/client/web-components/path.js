@@ -1,5 +1,5 @@
 export function join (...parts) {
-  const { isWin } = window.et
+  const isWin = false
   const separator = isWin ? '\\' : '/'
   const joined = parts.join(separator)
   const regex = new RegExp(`${separator}{2,}`, 'g')
@@ -7,7 +7,7 @@ export function join (...parts) {
 }
 
 export function resolve (...paths) {
-  const { isWin } = window.et
+  const isWin = false
   const separator = isWin ? '\\' : '/'
   const resolved = []
 
@@ -48,7 +48,7 @@ export function resolve (...paths) {
 }
 
 export function basename (path, ext) {
-  const { isWin } = window.et
+  const isWin = false
   const separator = isWin ? '\\' : '/'
   const parts = path.split(separator).filter(d => d)
   const lastPart = parts[parts.length - 1]

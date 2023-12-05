@@ -8,7 +8,7 @@
 
 Web demo of [electerm app](https://github.com/electerm/electerm).
 
-## Still under development.
+Visit: [https://electerm-demo.html5beta.com](https://electerm-demo.html5beta.com)
 
 [![GitHub version](https://img.shields.io/github/release/electerm/electerm/all.svg)](https://github.com/electerm/electerm/releases)
 [![license](https://img.shields.io/github/license/electerm/electerm.svg)](https://github.com/electerm/electerm-dev/blob/master/LICENSE)

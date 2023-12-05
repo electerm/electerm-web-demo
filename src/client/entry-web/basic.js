@@ -4,6 +4,7 @@
 import '../electerm-react/css/basic.styl'
 import '../web-components/web-api.js'
 import '../web-components/web-pre.js'
+import '../demo/ws.js'
 import { get as _get } from 'lodash-es'
 
 const { isDev, version, cdn, isDemo } = window.et
@@ -11,9 +12,9 @@ const { isDev, version, cdn, isDemo } = window.et
 async function loadWorker () {
   return new Promise((resolve) => {
     const url = !isDev
-      ? cdn + `/js/worker-${version}.js`
+      ? cdn + `/js/worker-${version}.js?worker`
       : (isDemo ? cdn + `/js/worker-demo-${version}.js` : cdn + '/js/worker.js')
-    window.worker = new window.Worker(url)
+    window.worker = new window.Worker(url, { type: 'module' })
     function onInit (e) {
       if (!e || !e.data) {
         return false
@@ -31,6 +32,10 @@ async function loadWorker () {
 }
 
 async function load () {
+  localStorage.setItem(
+    'term:sess:electerm-init-term',
+    ''
+  )
   window.capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1)
   }

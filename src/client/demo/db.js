@@ -1,10 +1,6 @@
-import {
-  getConf
-} from './conf.js'
+import { Db } from './ls-db.js'
 
 const db = {}
-let dbActionRef = null
-
 const tables = [
   'bookmarks',
   'history',
@@ -18,37 +14,13 @@ const tables = [
   'dbUpgradeLog'
 ]
 
-export async function getDb () {
-  if (dbActionRef) {
-    return dbActionRef
+tables.forEach(table => {
+  const conf = {
+    tableName: table
   }
-  const conf = await getConf()
-  let Db = null
-  if (conf.Db) {
-    Db = conf.Db
-  } else {
-    Db = await import('./nedb.js').then(d => d.Db)
-  }
-  tables.forEach(table => {
-    const conf = {
-      tableName: table
-    }
-    db[table] = new Db(conf)
-  })
-  dbActionRef = (dbName, op, ...args) => {
-    return new Promise((resolve, reject) => {
-      db[dbName][op](...args, (err, result) => {
-        if (err) {
-          return reject(err)
-        }
-        resolve(result)
-      })
-    })
-  }
-  return dbActionRef
-}
+  db[table] = new Db(conf)
+})
 
-export async function dbAction (...args) {
-  const func = await getDb()
-  return func(...args)
+export function dbAction (dbName, op, ...args) {
+  return db[dbName][op](...args)
 }
