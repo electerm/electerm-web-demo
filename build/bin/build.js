@@ -9,7 +9,7 @@ echo('start build')
 const timeStart = Date.now()
 
 // echo('clean')
-// exec('npm run clean')
+exec('npm run clean')
 mkdir('-p', 'public/iTerm2-Color-Schemes')
 echo('js/css file')
 exec('npm run vite-build')
