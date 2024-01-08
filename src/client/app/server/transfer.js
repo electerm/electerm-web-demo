@@ -26,7 +26,7 @@ export class Transfer {
     this.pausing = false
 
     this.onData = throttle((count) => {
-      ws.send({
+      ws.sendJSON({
         id: 'transfer:data:' + id,
         data: count
       }, false)
@@ -41,7 +41,7 @@ export class Transfer {
   }
 
   onEnd = (id = this.id, ws = this.ws) => {
-    ws.send({
+    ws.sendJSON({
       id: 'transfer:end:' + id,
       data: null
     }, false)
@@ -51,7 +51,7 @@ export class Transfer {
     if (!err) {
       return this.onEnd()
     }
-    ws && ws.send({
+    ws && ws.sendJSON({
       wid: 'transfer:err:' + id,
       error: {
         message: err.message,

@@ -99,6 +99,13 @@ export const fs = {
     return Object.keys(fs.data)
   },
 
+  getFolderSize: () => {
+    return {
+      size: 0,
+      count: 0
+    }
+  },
+
   statAsync: (path) => {
     const pp = path.split('/')
     const p = pp[pp.length - 1]

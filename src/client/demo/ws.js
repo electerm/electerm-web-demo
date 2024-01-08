@@ -126,6 +126,13 @@ export class FakeWs {
     }
   }
 
+  sendJSON (data, notify) {
+    // Convert the data to a JSON string
+    const json = JSON.stringify(data)
+    // Send the JSON string
+    this.send(json, notify)
+  }
+
   // A method to close the connection
   close (code, reason) {
     // Check if the readyState is 1 (OPEN)

@@ -15,6 +15,7 @@ window.log = window.console
 window.log.warning = console.warn
 window.pre = {
   extIconPath: window.et.extIconPath || '/icons/',
+  homeOrTmp: '/home/electerm',
   fsFunctions: [
     'readdirOnly',
     'readdirAndFiles',
@@ -46,7 +47,8 @@ window.pre = {
     'statCustom',
     'openCustom',
     'closeCustom',
-    'writeCustom'
+    'writeCustom',
+    'getFolderSize'
   ],
   osInfoData: {
     os: 'Linux',
