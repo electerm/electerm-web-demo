@@ -120,7 +120,7 @@ export default defineConfig({
           '@electerm/electerm-themes': ['@electerm/electerm-themes'],
           trzsz: ['trzsz'],
           manate: ['manate'],
-          'zmodem.js': ['zmodem.js'],
+          'zmodem-ts': ['zmodem-ts'],
           'vscode-icons-js': ['vscode-icons-js'],
           'react-utils': ['react', 'react-colorful', 'react-delta', 'memoize-one', 'prop-types']
         },
@@ -140,7 +140,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      events: 'eventemitter3'
+      events: 'eventemitter3',
+      '@novnc/novnc/core/rfb': resolve(cwd, 'src/client/web-components/empty.js')
     }
   }
 })
