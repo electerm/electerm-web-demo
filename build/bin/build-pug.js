@@ -10,11 +10,10 @@ import {
   viewData
 } from '../vite/common.js'
 
-const h = process.env.HOST
 const dt = {
   ...base(),
-  server: h,
-  cdn: h
+  server: '',
+  cdn: ''
 }
 
 export const buildPug = async (from, to) => {

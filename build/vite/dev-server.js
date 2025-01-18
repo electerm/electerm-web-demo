@@ -10,7 +10,7 @@ import express from 'express'
 import { createServer as createViteServer } from 'vite'
 import conf from './conf.js'
 
-const devPort = env.DEV_PORT || 5570
+const devPort = env.DEV_PORT || 5580
 const devHost = env.DEV_HOST || '127.0.0.1'
 const h = `http://${devHost}:${devPort}`
 

@@ -113,6 +113,7 @@
           "sshTunnelLocalPort": 1333
         }
       ],
+      "hasHopping": true,
       "connectionHoppings": [
         {
           "host": "192.168.2.27",
@@ -448,6 +449,7 @@
       "sshTunnels": [
         {}
       ],
+      "hasHopping": true,
       "connectionHoppings": [
         {
           "host": "192.168.2.27",
