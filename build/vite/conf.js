@@ -14,7 +14,7 @@ function buildInput () {
     worker: resolve(cwd, 'src/client/entry-web/worker.js')
   }
 }
-
+const fakePath = resolve(cwd, 'build/vite/fake-libs')
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -139,7 +139,9 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      events: 'eventemitter3',
+      'react-markdown': resolve(fakePath, 'react-markdown.jsx'),
+      '@novnc/novnc/core/rfb.js': resolve(fakePath, 'novnc.js'),
+      'zmodem-ts/dist/zsentry.js': resolve(fakePath, 'zmodem.js'),
       '@novnc/novnc/core/rfb': resolve(cwd, 'src/client/web-components/empty.js')
     }
   }
