@@ -26,7 +26,10 @@ jobs:
     if: needs.check-skip-ci.outputs.should_skip != 'true'
     steps:
     - uses: actions/checkout@v4
-    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
     - name: Install dependencies
       run: npm i -g pnpm && pnpm install
 
