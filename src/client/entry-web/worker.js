@@ -15,13 +15,12 @@ function safeJSONParse (str) {
 function createWs (
   type,
   id,
-  sessionId = '',
   sftpId = '',
   config
 ) {
   // init gloabl ws
   const { tokenElecterm } = config
-  const wsUrl = `ws://localhost:8080/${type}/${id}?sessionId=${sessionId}&sftpId=${sftpId}&token=${tokenElecterm}`
+  const wsUrl = `ws://localhost:8080/${type}/${id}?sftpId=${sftpId}&token=${tokenElecterm}`
   const ws = new FakeWs(wsUrl)
   ws.s = msg => {
     ws.send(JSON.stringify(msg))
@@ -71,8 +70,13 @@ async function onMsg (e) {
     args,
     action,
     type,
-    persist
+    persist,
+    url
   } = e.data
+  if (action === 'init-url') {
+    self.currentUrl = url
+    return false
+  }
   if (action === 'create') {
     const inst = self.insts[id]
     if (inst instanceof FakeWs) {

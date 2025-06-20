@@ -126,6 +126,31 @@ export class FakeWs {
     }
   }
 
+  _send (data, notify) {
+    // Check if the readyState is 1 (OPEN)
+    if (this.readyState === 1) {
+      // Simulate the sending process
+      setTimeout(() => {
+        // Create a fake event object
+        const event = {
+          type: 'message',
+          data,
+          target: this
+        }
+        // Call the onmessage method if it is a function
+        if (notify !== false && typeof this.onmessage === 'function') {
+          this.onmessage(event)
+        }
+        // Call the event listeners for the message event if they exist
+        if (this.listeners.message) {
+          for (const listener of this.listeners.message) {
+            listener(event)
+          }
+        }
+      }, 1) // Wait for 1 second
+    }
+  }
+
   sendJSON (data, notify) {
     // Convert the data to a JSON string
     const json = JSON.stringify(data)

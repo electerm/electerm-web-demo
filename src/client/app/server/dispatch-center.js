@@ -43,7 +43,7 @@ export default function initWs (ws, data) {
         nd += `\r\nOnly support ls command\r\n${promote}`
       }
       ws.cache = ''
-      ws.send(nd, false)
+      ws._send(nd, false)
     } else {
       ws.cache = (ws.cache || '') + data
     }
