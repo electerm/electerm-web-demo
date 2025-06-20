@@ -5,8 +5,25 @@ on:
     branches: [ main ]
 
 jobs:
+
+  check-skip-ci:
+    runs-on: ubuntu-latest
+    outputs:
+      should_skip: ${{ steps.check.outputs.should_skip }}
+    steps:
+      - id: check
+        name: Check if [skip ci] is in commit message
+        run: |
+          if echo "${{ github.event.head_commit.message || '' }}" | grep -i '\[skip ci\]'; then
+            echo "should_skip=true" >> $GITHUB_OUTPUT
+          else
+            echo "should_skip=false" >> $GITHUB_OUTPUT
+          fi
+
   build-deploy:
     runs-on: ubuntu-latest
+    needs: check-skip-ci
+    if: needs.check-skip-ci.outputs.should_skip != 'true'
     steps:
     - uses: actions/checkout@v4
     
