@@ -41,18 +41,58 @@ export class FakeWs {
   }
 
   init () {
-    this.send(
-      '\r\n==== welcome to electerm demo terminal =====\r\n',
-      false
+    this.sendToTerminal(
+      '\r\n🚀 Welcome to Electerm Demo Terminal! 🚀\r\n'
     )
-    this.send(
-      '\r\n---- only support ls comamnd ----\r\n',
-      false
+    this.sendToTerminal(
+      '\r\n📖 About Electerm:\r\n'
     )
-    this.send(
-      '\r\nelecterm demo terminal $ ',
-      false
+    this.sendToTerminal(
+      '   A modern, open-sourced terminal/ssh/sftp/ftp/telnet/serialport/RDP/VNC client(linux, mac, win)\r\n'
     )
+    this.sendToTerminal(
+      '\r\n🔗 Links:\r\n'
+    )
+    this.sendToTerminal(
+      '   • GitHub: https://github.com/electerm/electerm\r\n'
+    )
+    this.sendToTerminal(
+      '   • Website: https://electerm.html5beta.com\r\n'
+    )
+    this.sendToTerminal(
+      '\r\n💡 Demo Commands:\r\n'
+    )
+    this.sendToTerminal(
+      '   • Type "ls" to list files\r\n'
+    )
+    this.sendToTerminal(
+      '   • This is a limited demo - download the full version for complete features!\r\n'
+    )
+    this.sendToTerminal(
+      '\r\n────────────────────────────────────────────────────────────────\r\n'
+    )
+    this.sendToTerminal(
+      '\r\nelecterm demo terminal $ '
+    )
+  }
+
+  // Method to send messages directly to terminal without triggering command processing
+  sendToTerminal (data) {
+    if (this.readyState === 1) {
+      setTimeout(() => {
+        const event = {
+          type: 'message',
+          data,
+          target: this
+        }
+        // Only call event listeners (for terminal display), not onmessage (for command processing)
+        if (this.listeners.message) {
+          for (const listener of this.listeners.message) {
+            listener(event)
+          }
+        }
+      }, 1)
+    }
   }
 
   onmessage (e) {

@@ -11,6 +11,20 @@ import { get as _get } from 'lodash-es'
 
 const { isDev, version, cdn, isDemo } = window.et
 
+window.et.buildWsUrl = (
+  host,
+  port,
+  tokenElecterm,
+  id
+) => {
+  const ss = isDev ? window.et.server : window.location.href
+  const s = ss
+    ? ss.replace(/https?:\/\//, '').replace(/\/$/, '')
+    : `${host}:${port}`
+  const pre = ss.startsWith('https') ? 'wss' : 'ws'
+  return `${pre}://${s}/terminals/${id}?token=${tokenElecterm}`
+}
+
 async function loadWorker () {
   return new Promise((resolve) => {
     const url = !isDev
