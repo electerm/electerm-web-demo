@@ -23,6 +23,62 @@ Open-sourced terminal/ssh/telnet/serialport/sftp client(linux, mac, win).
   <img src="https://github.com/electerm/electerm-resource/raw/master/static/images/electerm.gif", alt="" />
 </div>
 
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm start
+
+# Build for production
+npm run b
+
+# Run tests
+npm run lint
+```
+
+## Deployment
+
+This project can be deployed to Cloudflare Pages for fast, global distribution.
+
+### Quick Deploy
+
+```bash
+# Deploy to Cloudflare Pages
+npm run cf:deploy
+```
+
+### Setup Instructions
+
+1. **Install Wrangler CLI**:
+
+   ```bash
+   npm install -g wrangler
+   ```
+
+2. **Login to Cloudflare**:
+
+   ```bash
+   wrangler login
+   ```
+
+3. **Deploy**:
+
+   ```bash
+   npm run cf:deploy
+   ```
+
+### Automatic Deployment
+
+The repository includes GitHub Actions for automatic deployment on push to main branch. Set up these secrets in your GitHub repository:
+
+- `CLOUDFLARE_API_TOKEN`: Your Cloudflare API token
+- `CLOUDFLARE_ACCOUNT_ID`: Your Cloudflare account ID
+
+For detailed deployment instructions, see [CLOUDFLARE_DEPLOYMENT.md](./CLOUDFLARE_DEPLOYMENT.md).
+
 ## License
 
 MIT

@@ -18,7 +18,8 @@
     "lint": "./node_modules/.bin/standard --verbose",
     "fix": "./node_modules/.bin/standard --fix",
     "lock": "npm i --package-lock-only",
-    "r": "./build/bin/release"
+    "r": "./build/bin/release",
+    "cf:deploy": "./build/bin/deploy-cloudflare.sh"
   },
   "license": "MIT",
   "langugeRepo": "https://github.com/electerm/electerm-locales",
