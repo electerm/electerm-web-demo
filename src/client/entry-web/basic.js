@@ -55,12 +55,17 @@ async function load () {
   window.capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1)
   }
+  // Make script load awaitable, so we remove the loading screen only after it's ready
   function loadScript () {
-    const rcs = document.createElement('script')
-    const url = !isDev ? cdn + `/js/electerm-${version}.js` : cdn + '/js/electerm.js'
-    rcs.src = url
-    rcs.type = 'module'
-    document.body.appendChild(rcs)
+    return new Promise((resolve, reject) => {
+      const rcs = document.createElement('script')
+      const url = !isDev ? cdn + `/js/electerm-${version}.js` : cdn + '/js/electerm.js'
+      rcs.src = url
+      rcs.type = 'module'
+      rcs.addEventListener('load', () => resolve())
+      rcs.addEventListener('error', (e) => reject(e))
+      document.body.appendChild(rcs)
+    })
   }
   window.getLang = (lang = window.store?.config.language || 'en_us') => {
     return _get(window.langMap, `[${lang}].lang`)
@@ -71,8 +76,11 @@ async function load () {
     return window.capitalizeFirstLetter(str)
   }
   await loadWorker()
-  loadScript()
-  document.body.removeChild(document.getElementById('content-loading'))
+  await loadScript()
+  const loadingEl = document.getElementById('content-loading')
+  if (loadingEl && loadingEl.parentNode) {
+    loadingEl.parentNode.removeChild(loadingEl)
+  }
 }
 
 // window.addEventListener('load', load)
