@@ -52,6 +52,8 @@ window.api = {
     } else if (func === 'setTitle') {
       document.title = args[0]
       return
+    } else if (func === 'checkMigrate') {
+      return Promise.resolve(false)
     } else if (func === 'openNewInstance') {
       return window.open(args[0], '_blank')
     } else if (func === 'closeApp') {
@@ -104,6 +106,8 @@ window.api = {
       return false
     } else if (func === 'windowMove') {
       return false
+    } else if (func === 'nodePtyCheck') {
+      return true
     } else if (func === 'getLoadTime' || func === 'setLoadTime') {
       return 0
     } else if (
