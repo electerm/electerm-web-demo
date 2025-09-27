@@ -121,7 +121,7 @@ export default defineConfig({
           manate: ['manate'],
           'zmodem-ts': ['zmodem-ts'],
           'electerm-icons': ['electerm-icons'],
-          'react-utils': ['react', 'react-colorful', 'react-delta-hooks', 'memoize-one']
+          'react-utils': ['react', 'react-colorful', 'react-delta-hooks']
         },
         inlineDynamicImports: false,
         format: 'esm',
