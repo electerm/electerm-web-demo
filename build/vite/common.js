@@ -28,7 +28,7 @@ export const staticPaths = [
     path: '/'
   },
   {
-    dir: resolve(cwd, 'node_modules/vscode-icons/icons'),
+    dir: resolve(cwd, 'node_modules/electerm-icons/icons'),
     path: '/icons'
   },
   {

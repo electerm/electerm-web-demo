@@ -120,7 +120,7 @@ export default defineConfig({
           trzsz: ['trzsz'],
           manate: ['manate'],
           'zmodem-ts': ['zmodem-ts'],
-          'vscode-icons-js': ['vscode-icons-js'],
+          'electerm-icons': ['electerm-icons'],
           'react-utils': ['react', 'react-colorful', 'react-delta-hooks', 'memoize-one']
         },
         inlineDynamicImports: false,
