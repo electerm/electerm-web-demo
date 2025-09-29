@@ -1,7 +1,6 @@
 import { config as conf } from 'dotenv'
 import { readFileSync } from 'fs'
 import { resolve } from 'path'
-import { loadDevStylus } from './style.js'
 import copy from 'json-deep-copy'
 
 conf()
@@ -56,8 +55,7 @@ export const base = () => {
     home: '/home/electerm',
     server: h,
     cdn: h,
-    query: {},
-    stylus: loadDevStylus()
+    query: {}
   }
 }
 
