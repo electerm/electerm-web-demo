@@ -40,7 +40,11 @@ async function createServer () {
     ...conf,
     server: {
       port: 3040,
-      middlewareMode: true
+      middlewareMode: true,
+      hmr: {
+        overlay: true,
+        port: env.DEV_HMR_PORT || 24578
+      }
     },
     appType: 'custom'
   })
