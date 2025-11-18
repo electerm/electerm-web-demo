@@ -1,6 +1,6 @@
 // window preload
 // import { message } from 'antd'
-import data from '../demo/init-data.json'
+import data from '../demo/init-data'
 import * as langMap from '@electerm/electerm-locales/esm/index.mjs'
 import {
   funcs1,

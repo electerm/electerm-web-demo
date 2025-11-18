@@ -1,5 +1,5 @@
 // A fake nodejs fs module
-import data from './init-data.json'
+import data from './init-data'
 
 export const fs = {
   constants: data.fsConstants,

@@ -1,4 +1,4 @@
-import data from './init-data.json'
+import data from './init-data'
 import iterms from '@electerm/electerm-themes/dist/index.mjs'
 import { dbAction } from './db'
 

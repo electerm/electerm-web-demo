@@ -1,4 +1,4 @@
-import data from './init-data.json'
+import data from './init-data'
 // A memory db class that mimics the localStorage db class
 export class Db {
   static data = data
