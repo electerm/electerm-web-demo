@@ -48,6 +48,7 @@ export const base = () => {
   return {
     version: pack.version,
     isDev: !isProd,
+    isWebApp: true,
     siteName: pack.name,
     isWin,
     isMac,
