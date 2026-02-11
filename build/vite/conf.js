@@ -109,7 +109,8 @@ export default defineConfig({
       'react-markdown': resolve(fakePath, 'react-markdown.jsx'),
       '@novnc/novnc/core/rfb.js': resolve(fakePath, 'novnc.js'),
       'zmodem-ts/dist/zsentry.js': resolve(fakePath, 'zmodem.js'),
-      '@novnc/novnc/core/rfb': resolve(cwd, 'src/client/web-components/empty.js')
+      '@novnc/novnc/core/rfb': resolve(cwd, 'src/client/web-components/empty.js'),
+      'ironrdp-wasm': resolve(cwd, 'src/client/web-components/empty.js')
     }
   }
 })
