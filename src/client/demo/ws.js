@@ -35,7 +35,7 @@ export class FakeWs {
         }
       }
       if (this.url.includes('/terminals/')) {
-        setTimeout(() => this.init(), 100)
+        setTimeout(() => this.init(), 600)
       }
     }, 1) // Wait for 1 second
   }
