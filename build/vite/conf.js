@@ -84,9 +84,8 @@ export default defineConfig({
             '@xterm/addon-webgl'
           ],
           '@electerm/electerm-themes': ['@electerm/electerm-themes'],
-          trzsz: ['trzsz'],
           manate: ['manate'],
-          'zmodem-ts': ['zmodem-ts'],
+          'spice-client': ['spice-client'],
           'electerm-icons': ['electerm-icons'],
           'react-utils': ['react', 'react-colorful', 'react-delta-hooks']
         },
@@ -110,7 +109,8 @@ export default defineConfig({
       '@novnc/novnc/core/rfb.js': resolve(fakePath, 'novnc.js'),
       'zmodem-ts/dist/zsentry.js': resolve(fakePath, 'zmodem.js'),
       '@novnc/novnc/core/rfb': resolve(cwd, 'src/client/web-components/empty.js'),
-      'ironrdp-wasm': resolve(cwd, 'src/client/web-components/empty.js')
+      'ironrdp-wasm': resolve(cwd, 'src/client/web-components/empty.js'),
+      'spice-client': resolve(cwd, 'src/client/web-components/empty.js')
     }
   }
 })

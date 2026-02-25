@@ -35,12 +35,13 @@ export class FakeWs {
         }
       }
       if (this.url.includes('/terminals/')) {
-        this.init()
+        setTimeout(() => this.init(), 100)
       }
     }, 1) // Wait for 1 second
   }
 
   init () {
+    console.log('init terminal')
     this.sendToTerminal(
       '\r\n🚀 Welcome to Electerm Demo Terminal! 🚀\r\n'
     )
