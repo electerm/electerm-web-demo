@@ -2,10 +2,102 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 // import htmlPurge from 'vite-plugin-purgecss'
 import { cwd, version } from './common.js'
-import { resolve } from 'path'
+import { resolve, join } from 'path'
 import def from './def.js'
 import commonjs from 'vite-plugin-commonjs'
+import {
+  readdirSync,
+  statSync
+} from 'fs'
+import { filesize } from 'filesize'
 // import externalGlobals from 'rollup-plugin-external-globals'
+
+function getDirSize (dirPath) {
+  let size = 0
+  const files = readdirSync(dirPath, { withFileTypes: true })
+  for (const file of files) {
+    const fullPath = join(dirPath, file.name)
+    if (file.isDirectory()) {
+      size += getDirSize(fullPath)
+    } else {
+      size += statSync(fullPath).size
+    }
+  }
+  return size
+}
+
+function showTotalSizePlugin () {
+  return {
+    name: 'show-total-size',
+    closeBundle: {
+      sequential: true,
+      order: 'post',
+      handler () {
+        const outDir = resolve(cwd, 'public')
+        try {
+          const totalSize = getDirSize(outDir)
+          console.log(`\n\x1b[32m✨ Total assets size: ${filesize(totalSize)}\x1b[0m\n`)
+        } catch (e) {
+          console.error(e)
+        }
+      }
+    }
+  }
+}
+
+const manualChunks = (id) => {
+  if (id.includes('node_modules')) {
+    if (id.match(/node_modules\/(react|react-dom|scheduler)\//) ||
+      id.includes('object-assign') ||
+      id.includes('loose-envify')) {
+      return 'react-vendor'
+    }
+    if (
+      id.includes('react-delta-hooks') ||
+      id.includes('react-markdown')
+    ) {
+      return 'react-utils'
+    }
+    if (id.includes('lodash-es')) {
+      return 'lodash-es'
+    }
+    if (id.includes('dayjs')) {
+      return 'dayjs'
+    }
+    if (id.includes('@ant-design/icons')) {
+      return 'ant-icons'
+    }
+    if (id.includes('@ant-design') || id.includes('@rc-component') || id.includes('classnames') || id.includes('@ctrl/tinycolor')) {
+      return 'react-vendor'
+    }
+    if (id.includes('antd')) {
+      return 'antd'
+    }
+    if (id.includes('@xterm')) {
+      return 'xterm'
+    }
+    if (id.includes('manate')) {
+      return 'manate'
+    }
+    if (id.includes('zmodem-ts')) {
+      return 'zmodem-ts'
+    }
+    if (id.includes('electerm-icons')) {
+      return 'electerm-icons'
+    }
+    if (id.includes('@novnc/novnc')) {
+      return 'novnc'
+    }
+    if (id.includes('ironrdp-wasm')) {
+      return 'ironrdp-wasm'
+    }
+    if (id.includes('spice-client')) {
+      return 'spice'
+    }
+    // Combine rest of node_modules into one chunk
+    return 'vendor'
+  }
+}
 
 function buildInput () {
   return {
@@ -24,7 +116,8 @@ export default defineConfig({
     //   react: 'React',
     //   'react-dom': 'ReactDOM'
     // }),
-    react({ include: /\.(mdx|js|jsx|ts|tsx|mjs)$/ })
+    react({ include: /\.(mdx|js|jsx|ts|tsx|mjs)$/ }),
+    showTotalSizePlugin()
   ],
   // optimizeDeps: {
   //   esbuildOptions: {
@@ -49,46 +142,7 @@ export default defineConfig({
       //   'react-dom'
       // ],
       output: {
-        manualChunks: {
-          react: ['react-dom'],
-          'lodash-es': ['lodash-es'],
-          dayjs: ['dayjs'],
-          antd1: [
-            '@ant-design/colors',
-            '@ant-design/cssinjs',
-            '@ant-design/react-slick',
-            '@ctrl/tinycolor',
-            'classnames',
-            '@rc-component/color-picker',
-            '@rc-component/mutate-observer',
-            '@rc-component/tour',
-            '@rc-component/trigger',
-            'scroll-into-view-if-needed',
-            'throttle-debounce'
-          ],
-          antd: ['antd'],
-          '@ant-design/icons': ['@ant-design/icons'],
-          xterm: [
-            '@xterm/xterm'
-          ],
-          'xterm-addon1': [
-            '@xterm/addon-attach',
-            '@xterm/addon-canvas',
-            '@xterm/addon-fit',
-            '@xterm/addon-ligatures'
-          ],
-          'xterm-addon2': [
-            '@xterm/addon-search',
-            '@xterm/addon-unicode11',
-            '@xterm/addon-web-links',
-            '@xterm/addon-webgl'
-          ],
-          '@electerm/electerm-themes': ['@electerm/electerm-themes'],
-          manate: ['manate'],
-          'spice-client': ['spice-client'],
-          'electerm-icons': ['electerm-icons'],
-          'react-utils': ['react', 'react-colorful', 'react-delta-hooks']
-        },
+        manualChunks,
         inlineDynamicImports: false,
         format: 'esm',
         entryFileNames: `js/[name]-${version}.js`,
@@ -105,6 +159,10 @@ export default defineConfig({
   },
   resolve: {
     alias: {
+      '@xterm/addon-image': resolve(fakePath, 'xterm-addon.js'),
+      '@xterm/addon-ligatures': resolve(fakePath, 'xterm-addon.js'),
+      // '@xterm/addon-unicode11': resolve(fakePath, 'xterm-addon.js'),
+      '@xterm/addon-webgl': resolve(fakePath, 'xterm-addon.js'),
       'react-markdown': resolve(fakePath, 'react-markdown.jsx'),
       '@novnc/novnc/core/rfb.js': resolve(fakePath, 'novnc.js'),
       'zmodem-ts/dist/zsentry.js': resolve(fakePath, 'zmodem.js'),
