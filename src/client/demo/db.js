@@ -13,7 +13,10 @@ const tables = [
   'log',
   'dbUpgradeLog',
   'profiles',
-  'workspaces'
+  'workspaces',
+  'history',
+  'terminalCommandHistory',
+  'aiChatHistory'
 ]
 
 tables.forEach(table => {
