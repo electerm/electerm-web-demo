@@ -2,102 +2,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 // import htmlPurge from 'vite-plugin-purgecss'
 import { cwd, version } from './common.js'
-import { resolve, join } from 'path'
+import { resolve } from 'path'
 import def from './def.js'
-import commonjs from 'vite-plugin-commonjs'
-import {
-  readdirSync,
-  statSync
-} from 'fs'
-import { filesize } from 'filesize'
-// import externalGlobals from 'rollup-plugin-external-globals'
-
-function getDirSize (dirPath) {
-  let size = 0
-  const files = readdirSync(dirPath, { withFileTypes: true })
-  for (const file of files) {
-    const fullPath = join(dirPath, file.name)
-    if (file.isDirectory()) {
-      size += getDirSize(fullPath)
-    } else {
-      size += statSync(fullPath).size
-    }
-  }
-  return size
-}
-
-function showTotalSizePlugin () {
-  return {
-    name: 'show-total-size',
-    closeBundle: {
-      sequential: true,
-      order: 'post',
-      handler () {
-        const outDir = resolve(cwd, 'public')
-        try {
-          const totalSize = getDirSize(outDir)
-          console.log(`\n\x1b[32m✨ Total assets size: ${filesize(totalSize)}\x1b[0m\n`)
-        } catch (e) {
-          console.error(e)
-        }
-      }
-    }
-  }
-}
-
-const manualChunks = (id) => {
-  if (id.includes('node_modules')) {
-    if (id.match(/node_modules\/(react|react-dom|scheduler)\//) ||
-      id.includes('object-assign') ||
-      id.includes('loose-envify')) {
-      return 'react-vendor'
-    }
-    if (
-      id.includes('react-delta-hooks') ||
-      id.includes('react-markdown')
-    ) {
-      return 'react-utils'
-    }
-    if (id.includes('lodash-es')) {
-      return 'lodash-es'
-    }
-    if (id.includes('dayjs')) {
-      return 'dayjs'
-    }
-    if (id.includes('@ant-design/icons')) {
-      return 'ant-icons'
-    }
-    if (id.includes('@ant-design') || id.includes('@rc-component') || id.includes('classnames') || id.includes('@ctrl/tinycolor')) {
-      return 'react-vendor'
-    }
-    if (id.includes('antd')) {
-      return 'antd'
-    }
-    if (id.includes('@xterm')) {
-      return 'xterm'
-    }
-    if (id.includes('manate')) {
-      return 'manate'
-    }
-    if (id.includes('zmodem-ts')) {
-      return 'zmodem-ts'
-    }
-    if (id.includes('electerm-icons')) {
-      return 'electerm-icons'
-    }
-    if (id.includes('@novnc/novnc')) {
-      return 'novnc'
-    }
-    if (id.includes('ironrdp-wasm')) {
-      return 'ironrdp-wasm'
-    }
-    if (id.includes('spice-client')) {
-      return 'spice'
-    }
-    // Combine rest of node_modules into one chunk
-    return 'vendor'
-  }
-}
 
 function buildInput () {
   return {
@@ -111,13 +17,11 @@ const fakePath = resolve(cwd, 'build/vite/fake-libs')
 export default defineConfig({
   plugins: [
     // htmlPurge(),
-    commonjs(),
     // externalGlobals({
     //   react: 'React',
     //   'react-dom': 'ReactDOM'
     // }),
-    react({ include: /\.(mdx|js|jsx|ts|tsx|mjs)$/ }),
-    showTotalSizePlugin()
+    react({ include: /\.(mdx|js|jsx|ts|tsx|mjs)$/ })
   ],
   // optimizeDeps: {
   //   esbuildOptions: {
@@ -128,12 +32,13 @@ export default defineConfig({
   // },
   define: def,
   publicDir: false,
-  css: {
-    codeSplit: false
+  legacy: {
+    inconsistentCjsInterop: true
   },
   root: resolve(cwd),
   build: {
     emptyOutDir: false,
+    cssCodeSplit: false,
     outDir: resolve(cwd, 'public'),
     rollupOptions: {
       input: buildInput(),
@@ -142,16 +47,19 @@ export default defineConfig({
       //   'react-dom'
       // ],
       output: {
-        manualChunks,
         inlineDynamicImports: false,
         format: 'esm',
         entryFileNames: `js/[name]-${version}.js`,
         chunkFileNames: `chunk/[name]-${version}-[hash].js`,
         assetFileNames: chunkInfo => {
           const { name } = chunkInfo
-          return name.endsWith('.css')
-            ? `css/${version}-${name}`
-            : `images/${name}`
+          if (/\.(png|jpe?g|gif|svg|webp|ico|bmp)$/i.test(name)) {
+            return `images/${name}`
+          } else if (name && name.endsWith('.css')) {
+            return `css/style-${version}[extname]`
+          } else {
+            return 'assets/[name]-[hash][extname]'
+          }
         },
         dir: resolve(cwd, 'public')
       }

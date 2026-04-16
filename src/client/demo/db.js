@@ -16,7 +16,8 @@ const tables = [
   'workspaces',
   'history',
   'terminalCommandHistory',
-  'aiChatHistory'
+  'aiChatHistory',
+  'autoRunWidgets'
 ]
 
 tables.forEach(table => {
