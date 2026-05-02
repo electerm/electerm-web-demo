@@ -1,11 +1,49 @@
 
 doctype html
-html
+html(lang='en')
   head
     meta(charset='UTF-8')
     meta(http-equiv='x-ua-compatible' content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
-    title #{siteName}
+    title #{siteName} - Web Terminal/SSH/SFTP Client Demo
+
+    //- Basic SEO
+    meta(name='description', content='Free web-based terminal, SSH, and SFTP client demo. Access remote servers directly from your browser with a full-featured terminal emulator powered by xterm.js.')
+    meta(name='keywords', content='terminal, ssh, sftp, web terminal, browser terminal, ssh client, webssh, xterm, remote server, command line')
+    meta(name='author', content='ZHAO Xudong')
+    meta(name='robots', content='index, follow, max-snippet:-1, max-image-preview:large')
+    link(rel='canonical', href='https://electerm-demo.html5beta.com/')
+
+    //- Open Graph / Facebook
+    meta(property='og:type', content='website')
+    meta(property='og:url', content='https://electerm-demo.html5beta.com/')
+    meta(property='og:title', content='electerm - Web Terminal/SSH/SFTP Client Demo')
+    meta(property='og:description', content='Free web-based terminal, SSH, and SFTP client demo. Access remote servers directly from your browser.')
+    meta(property='og:image', content='https://electerm-demo.html5beta.com/images/electerm.png')
+    meta(property='og:image:alt', content='electerm terminal interface')
+    meta(property='og:site_name', content='electerm web demo')
+
+    //- Twitter Card
+    meta(name='twitter:card', content='summary_large_image')
+    meta(name='twitter:title', content='electerm - Web Terminal/SSH/SFTP Client Demo')
+    meta(name='twitter:description', content='Free web-based terminal, SSH, and SFTP client demo. Access remote servers directly from your browser.')
+    meta(name='twitter:image', content='https://electerm-demo.html5beta.com/images/electerm.png')
+    meta(name='twitter:image:alt', content='electerm terminal interface')
+
+    //- Theme & UI
+    meta(name='theme-color', content='#141314')
+    meta(name='color-scheme', content='dark')
+    meta(name='referrer', content='strict-origin-when-cross-origin')
+
+    //- Favicons
+    link(rel='icon', type='image/x-icon', href='/favicon.ico')
+    link(rel='icon', type='image/png', sizes='32x32', href='/favicon-32x32.png')
+    link(rel='icon', type='image/png', sizes='16x16', href='/favicon-16x16.png')
+    link(rel='apple-touch-icon', sizes='180x180', href='/apple-touch-icon.png')
+
+    //- AI & Machine-readable metadata
+    meta(name='ai-content-declaration', content='human-created')
+    link(rel='alternate', href='/ai.txt', type='text/plain', title='AI Context File')
     style.
       body {
         background: #000;

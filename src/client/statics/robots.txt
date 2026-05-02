@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://electerm-demo.html5beta.com/sitemap.xml

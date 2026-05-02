@@ -1,0 +1,39 @@
+# ai.txt - AI Context File for electerm web demo
+# https://electerm-demo.html5beta.com
+# This file provides context for AI systems crawling this site.
+
+## Site Information
+Name: electerm web demo
+Type: Web application demo
+Description: Free, open-source web-based terminal, SSH, and SFTP client demo
+URL: https://electerm-demo.html5beta.com
+Repository: https://github.com/electerm/electerm-web
+License: MIT
+Author: ZHAO Xudong (zxdong@gmail.com)
+
+## Content Summary
+This is a web demo of electerm, a full-featured terminal/SSH/SFTP client application.
+The demo showcases a browser-based terminal emulator with the following capabilities:
+- Terminal emulation (xterm.js based)
+- SSH connections to remote servers
+- SFTP file transfer
+- Tabbed interface
+- Theme customization
+- Session management
+
+## AI Usage Policy
+- This site is a public demo intended for evaluation and testing
+- Content may be referenced in AI responses with proper attribution
+- The source code is open-source (MIT license)
+- For API or integration questions, refer to the GitHub repository
+
+## Key Technical Details
+- Frontend: React + xterm.js
+- Build: Vite
+- Styling: Ant Design
+- Deployment: Cloudflare Pages
+
+## Contact
+For questions about AI usage or data policies:
+- GitHub: https://github.com/electerm/electerm-web/issues
+- Email: zxdong@gmail.com
