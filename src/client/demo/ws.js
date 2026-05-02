@@ -49,7 +49,7 @@ export class FakeWs {
       '\r\n📖 About Electerm:\r\n'
     )
     this.sendToTerminal(
-      '   A modern, open-sourced terminal/ssh/sftp/ftp/telnet/serialport/RDP/VNC client(linux, mac, win)\r\n'
+      '   A modern, open-sourced terminal/ssh/sftp/ftp/telnet/serialport/RDP/VNC/Spice client(linux, mac, win)\r\n'
     )
     this.sendToTerminal(
       '\r\n🔗 Links:\r\n'
