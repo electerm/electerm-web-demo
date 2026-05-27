@@ -39,6 +39,7 @@ export default defineConfig({
   build: {
     emptyOutDir: false,
     cssCodeSplit: false,
+    codeSplitting: false,
     outDir: resolve(cwd, 'public'),
     rollupOptions: {
       input: buildInput(),
@@ -47,7 +48,6 @@ export default defineConfig({
       //   'react-dom'
       // ],
       output: {
-        inlineDynamicImports: false,
         format: 'esm',
         entryFileNames: `js/[name]-${version}.js`,
         chunkFileNames: `chunk/[name]-${version}-[hash].js`,
