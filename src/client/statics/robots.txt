@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://electerm-demo.html5beta.com/sitemap.xml
+Sitemap: https://demo.electerm.org/sitemap.xml

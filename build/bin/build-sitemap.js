@@ -3,7 +3,7 @@ import { resolve } from 'path'
 import { cwd } from './build-common.js'
 
 const today = new Date().toISOString().split('T')[0]
-const baseUrl = 'https://electerm-demo.html5beta.com'
+const baseUrl = 'https://demo.electerm.org'
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

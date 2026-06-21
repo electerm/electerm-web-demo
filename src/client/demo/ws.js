@@ -58,7 +58,7 @@ export class FakeWs {
       '   • GitHub: https://github.com/electerm/electerm\r\n'
     )
     this.sendToTerminal(
-      '   • Website: https://electerm.html5beta.com\r\n'
+      '   • Website: https://electerm.org\r\n'
     )
     this.sendToTerminal(
       '\r\n💡 Demo Commands:\r\n'

@@ -39,7 +39,7 @@ const cmdMapper = {
 2684307 execapp   0.1 98800 node /home/electerm/dev/auto-bots/cmds/update-ss-list.js
   757 root      0.1 95212 node /home/electerm/apps/letsencrypt-bot/app/root-app.js
 2986206 root      0.1  1516 sshd: execapp [priv]
-547253 execapp   0.1 100364 node /home/electerm/dev/electerm.html5beta.com/electerm.home.watch.js
+547253 execapp   0.1 100364 node /home/electerm/dev/electerm.org/electerm.home.watch.js
   733 root      0.0 99668 PM2 v5.2.0: God Daemon (/root/.pm2)
   457 systemd+  0.0  9028 /lib/systemd/systemd-timesyncd
   432 systemd+  0.0  8860 /lib/systemd/systemd-networkd

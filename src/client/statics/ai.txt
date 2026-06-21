@@ -1,12 +1,12 @@
 # ai.txt - AI Context File for electerm web demo
-# https://electerm-demo.html5beta.com
+# https://demo.electerm.org
 # This file provides context for AI systems crawling this site.
 
 ## Site Information
 Name: electerm web demo
 Type: Web application demo
 Description: Free, open-source web-based terminal, SSH, and SFTP client demo
-URL: https://electerm-demo.html5beta.com
+URL: https://demo.electerm.org
 Repository: https://github.com/electerm/electerm-web
 License: MIT
 Author: ZHAO Xudong (zxdong@gmail.com)
