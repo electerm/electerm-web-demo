@@ -34,16 +34,22 @@ export default function initWs (ws, data) {
   const promote = 'electerm demo terminal $ '
   if (url.includes('/terminals/')) {
     if (data.includes('\r')) {
-      let nd = (ws.cache || '') + data
-      if (nd.trim() === 'ls') {
-        nd += `\r\n\r\nDownlods\r\nDocuments\r\na.jpg\r\n\r\n${promote}`
-      } else if (!nd.trim()) {
-        nd += `\r\n${promote}`
+      // Build the full input from cache + current data.
+      // Only send the command *output* back to the terminal, not the
+      // input itself — FakeWs.send() already echoes every keystroke to
+      // the terminal via its message listeners, so including the input
+      // here would render it a second time (e.g. an extra "ls").
+      const input = (ws.cache || '') + data
+      let response
+      if (input.trim() === 'ls') {
+        response = `\r\n\r\nDownloads\r\nDocuments\r\na.jpg\r\n\r\n${promote}`
+      } else if (!input.trim()) {
+        response = `\r\n${promote}`
       } else {
-        nd += `\r\nOnly support ls command\r\n${promote}`
+        response = `\r\nOnly support ls command\r\n${promote}`
       }
       ws.cache = ''
-      ws._send(nd, false)
+      ws._send(response, false)
     } else {
       ws.cache = (ws.cache || '') + data
     }

@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "b": "npm run compile && npm run pug",
-    "start": "NODE_ENV=development node ./build/vite/dev-server.js",
+    "start": "cross-env NODE_ENV=development node ./build/vite/dev-server.js",
     "clean": "node build/bin/clean",
     "build": "echo \"ok\"",
     "pug": "NODE_ENV=production node build/bin/build-pug.js",
