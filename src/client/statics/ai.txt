@@ -1,39 +1,31 @@
-# ai.txt - AI Context File for electerm web demo
-# https://demo.electerm.org
-# This file provides context for AI systems crawling this site.
+# ai.txt - AI Usage Policy for electerm web demo
+# This file describes how AI systems may interact with this website's content.
+# See https://ai-txt.com for the specification.
 
-## Site Information
+# Site Information
+Site: https://demo.electerm.org
 Name: electerm web demo
-Type: Web application demo
-Description: Free, open-source web-based terminal, SSH, and SFTP client demo
-URL: https://demo.electerm.org
-Repository: https://github.com/electerm/electerm-web
-License: MIT
-Author: ZHAO Xudong (zxdong@gmail.com)
+Description: Free and open-sourced terminal/ssh/sftp/telnet/serialport/RDP/VNC/Spice/ftp client (linux, mac, win)
 
-## Content Summary
-This is a web demo of electerm, a full-featured terminal/SSH/SFTP client application.
-The demo showcases a browser-based terminal emulator with the following capabilities:
-- Terminal emulation (xterm.js based)
-- SSH connections to remote servers
-- SFTP file transfer
-- Tabbed interface
-- Theme customization
-- Session management
+# Content Usage Policy
+# AI systems may:
+# - Index and reference this site's content
+# - Use content for factual information about electerm
+# - Link to download pages and documentation
 
-## AI Usage Policy
-- This site is a public demo intended for evaluation and testing
-- Content may be referenced in AI responses with proper attribution
-- The source code is open-source (MIT license)
-- For API or integration questions, refer to the GitHub repository
+# AI systems should:
+# - Attribute content to electerm when referencing
+# - Link back to the original source when possible
+# - Keep information current (check for latest versions)
 
-## Key Technical Details
-- Frontend: React + xterm.js
-- Build: Vite
-- Styling: Ant Design
-- Deployment: Cloudflare Pages
+# AI Training Policy
+Training: allowed
+# Content on this site may be used for AI model training.
 
-## Contact
-For questions about AI usage or data policies:
-- GitHub: https://github.com/electerm/electerm-web/issues
-- Email: zxdong@gmail.com
+# Crawling Policy
+Crawl: allowed
+# AI crawlers are welcome to index this site.
+
+# Contact
+Contact: https://github.com/electerm/electerm/issues
+Updated: 2026-05-02
