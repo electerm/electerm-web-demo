@@ -1,6 +1,6 @@
 {
   "name": "electerm-web-demo",
-  "version": "4.15.110",
+  "version": "4.15.161",
   "description": "Running electerm in as web app",
   "main": "src/app/app.js",
   "type": "module",
@@ -47,8 +47,8 @@
   "devDependencies": {
     "@ant-design/icons": "6.2.5",
     "@ctrl/tinycolor": "^4.1.0",
-    "@electerm/electerm-locales": "2.2.16",
-    "@electerm/electerm-react": "3.15.110",
+    "@electerm/electerm-locales": "2.2.18",
+    "@electerm/electerm-react": "3.15.161",
     "@electerm/electerm-resource": "2.1.7",
     "@electerm/electerm-themes": "^1.0.1",
     "@fontsource/maple-mono": "^5.2.6",
@@ -65,7 +65,7 @@
     "@xterm/addon-web-links": "0.11.0",
     "@xterm/addon-webgl": "0.18.0",
     "@xterm/xterm": "5.5.0",
-    "antd": "6.4.3",
+    "antd": "6.5.1",
     "classnames": "2.5.1",
     "cross-env": "7.0.3",
     "dotenv": "16.3.1",
