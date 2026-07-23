@@ -5,6 +5,7 @@ export default {
   ...data,
   config: {
     ...data.config,
-    ...defaultConfig
+    ...defaultConfig,
+    useSystemTitleBar: true
   }
 }
