@@ -56,7 +56,11 @@ export const base = () => {
     home: '/home/electerm',
     server: h,
     cdn: h,
-    query: {}
+    query: {},
+    // Origin(s) permitted to control the store over postMessage. '*' allows
+    // any origin (local dev / demo). The production build overrides this in
+    // build/bin/build-pug.js with the real allowed host(s).
+    safeOrigin: '*'
   }
 }
 

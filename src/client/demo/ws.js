@@ -69,6 +69,25 @@ export class FakeWs {
     this.sendToTerminal(
       '   • This is a limited demo - download the full version for complete features!\r\n'
     )
+    // Show every terminal color defined in the current theme, but only when
+    // the page URL carries ?showThemeColor=1. Each name is rendered in its own
+    // color via ANSI SGR codes, so xterm applies whatever theme (default /
+    // light / custom) is currently active.
+    const showThemeColor = typeof window !== 'undefined' &&
+      new URLSearchParams(window.location.search).get('showThemeColor') === '1'
+    if (showThemeColor) {
+      const termColors = [
+        ['black', 30], ['red', 31], ['green', 32], ['yellow', 33],
+        ['blue', 34], ['magenta', 35], ['cyan', 36], ['white', 37],
+        ['brightBlack', 90], ['brightRed', 91], ['brightGreen', 92], ['brightYellow', 93],
+        ['brightBlue', 94], ['brightMagenta', 95], ['brightCyan', 96], ['brightWhite', 97]
+      ]
+      this.sendToTerminal(
+        '\r\n🎨 Terminal theme colors:\r\n   ' +
+        termColors.map(([name, code]) => `\x1b[${code}m${name}\x1b[0m`).join('  ') +
+        '\r\n'
+      )
+    }
     this.sendToTerminal(
       '\r\n────────────────────────────────────────────────────────────────\r\n'
     )

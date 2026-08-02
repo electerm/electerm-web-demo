@@ -69,6 +69,9 @@ async function createServer () {
   // express router (express.Router()), you should use router.use
   app.use(vite.middlewares)
   app.get(['/', '/index.html'], handleIndex)
+  app.get('/control', (req, res) => {
+    res.render('control', viewData())
+  })
   app.get('/:dir/:name.:ext', redirect)
   app.listen(devPort, devHost, () => {
     console.log('cwd:', cwd)

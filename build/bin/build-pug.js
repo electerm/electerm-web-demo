@@ -7,13 +7,17 @@ import { resolve } from 'path'
 import {
   cwd,
   base,
-  viewData
+  viewData,
+  isProd
 } from '../vite/common.js'
 
 const dt = {
   ...base(),
   server: '',
-  cdn: ''
+  cdn: '',
+  // Production build: only *.electerm.org (and its subdomains) may drive the
+  // store via postMessage. Exposed to the client as window.et.safeOrigin.
+  safeOrigin: isProd ? '*.electerm.org' : '*'
 }
 
 export const buildPug = async (from, to) => {
