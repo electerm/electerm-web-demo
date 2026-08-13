@@ -5,7 +5,7 @@
 # Site Information
 Site: https://demo.electerm.org
 Name: electerm web demo
-Description: Free and open-sourced terminal/ssh/sftp/telnet/serialport/RDP/VNC/Spice/ftp client (linux, mac, win)
+Description: Free and open-sourced terminal/ssh/sftp/telnet/serialport/RDP/VNC/Spice/ftp client 
 
 # Content Usage Policy
 # AI systems may:
