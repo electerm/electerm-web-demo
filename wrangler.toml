@@ -1,18 +1,7 @@
 name = "electerm-web-demo"
 main = "src/worker/worker.js"
 compatibility_date = "2024-07-01"
-workers_dev = true
-
-routes = [
-  { pattern = "demo.electerm.org/*", zone_name = "electerm.org" },
-  { pattern = "electerm-demo.html5beta.com/*", zone_name = "html5beta.com" }
-]
 
 [assets]
 directory = "./public"
-# serve all requests through the worker first, so we can redirect by hostname
-run_worker_first = true
 binding = "ASSETS"
-
-[observability]
-enabled = true
