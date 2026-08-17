@@ -8,38 +8,110 @@ html(lang='en')
     title #{siteName} - Free and open-sourced terminal/ssh/sftp/telnet/serialport/RDP/VNC/Spice/ftp client 
 
     //- Basic SEO
-    meta(name='description', content='Free and open-sourced terminal/ssh/sftp/telnet/serialport/RDP/VNC/Spice/ftp client ')
-    meta(name='keywords', content='terminal, ssh, sftp, web terminal, browser terminal, ssh client, webssh, xterm, remote server, command line')
+    meta(name='description', content='Try electerm in your browser — free and open-sourced terminal/ssh/sftp/telnet/serialport/RDP/VNC/Spice/ftp client, no install required.')
+    meta(name='keywords', content='electerm, web terminal, browser ssh client, online terminal, ssh in browser, webssh, sftp client, telnet client, serial port client, xterm.js')
     meta(name='author', content='ZHAO Xudong')
     meta(name='robots', content='index, follow, max-snippet:-1, max-image-preview:large')
     link(rel='canonical', href='https://demo.electerm.org/')
 
+    //- Performance hints for external assets
+    link(rel='preconnect', href='https://electerm.org', crossorigin='')
+
     //- Open Graph / Facebook
     meta(property='og:type', content='website')
     meta(property='og:url', content='https://demo.electerm.org/')
-    meta(property='og:title', content='electerm - Free and open-sourced terminal/ssh/sftp/telnet/serialport/RDP/VNC/Spice/ftp client ')
-    meta(property='og:description', content='Free and open-sourced terminal/ssh/sftp/telnet/serialport/RDP/VNC/Spice/ftp client ')
-    meta(property='og:image', content='https://electerm.org/images/electerm.png')
-    meta(property='og:image:alt', content='electerm terminal interface')
+    meta(property='og:title', content='electerm web demo - terminal/ssh/sftp client in your browser')
+    meta(property='og:description', content='Try electerm in your browser — free and open-sourced terminal/ssh/sftp/telnet/serialport/RDP/VNC/Spice/ftp client, no install required.')
+    meta(property='og:image', content='https://electerm.org/electerm.png')
+    meta(property='og:image:type', content='image/png')
+    meta(property='og:image:width', content='766')
+    meta(property='og:image:height', content='266')
+    meta(property='og:image:alt', content='electerm logo')
     meta(property='og:site_name', content='electerm web demo')
+    meta(property='og:locale', content='en_US')
 
     //- Twitter Card
-    meta(name='twitter:card', content='summary_large_image')
-    meta(name='twitter:title', content='electerm - Free and open-sourced terminal/ssh/sftp/telnet/serialport/RDP/VNC/Spice/ftp client ')
-    meta(name='twitter:description', content='Free and open-sourced terminal/ssh/sftp/telnet/serialport/RDP/VNC/Spice/ftp client ')
-    meta(name='twitter:image', content='https://electerm.org/images/electerm.png')
-    meta(name='twitter:image:alt', content='electerm terminal interface')
+    meta(name='twitter:card', content='summary')
+    meta(name='twitter:title', content='electerm web demo - terminal/ssh/sftp client in your browser')
+    meta(name='twitter:description', content='Try electerm in your browser — free and open-sourced terminal/ssh/sftp/telnet/serialport/RDP/VNC/Spice/ftp client, no install required.')
+    meta(name='twitter:image', content='https://electerm.org/electerm.png')
+    meta(name='twitter:image:alt', content='electerm logo')
 
     //- Theme & UI
     meta(name='theme-color', content='#141314')
     meta(name='color-scheme', content='dark')
     meta(name='referrer', content='strict-origin-when-cross-origin')
 
-    //- Favicons
+    //- Favicons (served from electerm.org)
     link(rel='icon', type='image/x-icon', href='https://electerm.org/favicon.ico')
     link(rel='icon', type='image/png', sizes='32x32', href='https://electerm.org/favicon-32x32.png')
     link(rel='icon', type='image/png', sizes='16x16', href='https://electerm.org/favicon-16x16.png')
     link(rel='apple-touch-icon', sizes='180x180', href='https://electerm.org/apple-touch-icon.png')
+    link(rel='manifest', href='https://electerm.org/site.webmanifest')
+
+    //- Structured data
+    script(type='application/ld+json').
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "electerm web demo",
+        "url": "https://demo.electerm.org/",
+        "description": "Running electerm in the browser",
+        "inLanguage": "en",
+        "isAccessibleForFree": true
+      }
+    script(type='application/ld+json').
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "electerm web demo",
+        "url": "https://demo.electerm.org/",
+        "description": "Try electerm in your browser — free and open-sourced terminal/ssh/sftp/telnet/serialport/RDP/VNC/Spice/ftp client, no install required.",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any (web browser)",
+        "browserRequirements": "Requires JavaScript",
+        "softwareVersion": "#{version}",
+        "isAccessibleForFree": true,
+        "image": "https://electerm.org/electerm.png",
+        "featureList": [
+          "SSH client",
+          "SFTP file transfer",
+          "Telnet client",
+          "Serial port connection",
+          "RDP / VNC / Spice",
+          "Multi-tab terminal",
+          "Theme customization"
+        ],
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "ZHAO Xudong",
+          "url": "https://html5beta.com",
+          "sameAs": "https://github.com/zxdong262"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "electerm",
+          "url": "https://electerm.org",
+          "logo": "https://electerm.org/electerm.png"
+        }
+      }
+    script(type='application/ld+json').
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "electerm",
+        "url": "https://electerm.org",
+        "logo": "https://electerm.org/electerm.png",
+        "sameAs": [
+          "https://github.com/electerm/electerm",
+          "https://cloud.electerm.org"
+        ]
+      }
 
     //- AI & Machine-readable metadata
     meta(name='ai-content-declaration', content='human-created')

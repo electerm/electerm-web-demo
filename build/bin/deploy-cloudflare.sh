@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Cloudflare Pages deployment script for Electerm Web Demo
+# Cloudflare Workers deployment script for Electerm Web Demo
 
 set -e
 
-echo "🚀 Starting Cloudflare Pages deployment..."
+echo "🚀 Starting Cloudflare Workers deployment..."
 
 # Check if wrangler is installed
 if ! command -v wrangler &> /dev/null; then
@@ -16,9 +16,9 @@ fi
 echo "📦 Building project..."
 npm run b
 
-# Deploy to Cloudflare Pages
-echo "📄 Deploying to Cloudflare Pages..."
-wrangler pages deploy public --project-name electerm-web-demo
+# Deploy to Cloudflare Workers
+echo "🤖 Deploying to Cloudflare Workers..."
+wrangler deploy
 
 echo "✅ Deployment completed!"
-echo "🌐 Your site should be available shortly at your Cloudflare Pages domain."
+echo "🌐 Your site should be available shortly at your Cloudflare Workers domain."
