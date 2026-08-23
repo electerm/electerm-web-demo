@@ -22,19 +22,26 @@ Web demo of [electerm](https://github.com/electerm/electerm) app, running in bro
 
 Visit: [https://demo.electerm.org](https://demo.electerm.org)
 
-Open-sourced terminal/ssh/sftp/telnet/serialport/RDP/VNC/Spice/ftp client.
+Open-sourced terminal/ssh/sftp/ftp/telnet/serialport/RDP/VNC/Spice client (Linux, Mac, Windows, Android, HarmonyOS).
 
 ## Related projects/sites
 
 - [electerm](https://github.com/electerm/electerm): The main desktop app (Electron-based)
 - [electerm.org](https://electerm.org): Homepage, downloads, videos, etc
-- [electerm-web](https://github.com/electerm/electerm-web): Web app version running in browser(including mobile device)
+- [electerm-web](https://github.com/electerm/electerm-web): Web app version running in browser (including mobile device)
 - [electerm-web-docker](https://github.com/electerm/electerm-web-docker): Docker image for electerm-web
+- [electerm-android](https://github.com/electerm/electerm-android): Android app
+- [electerm-harmony](https://github.com/electerm/electerm-harmony): HarmonyOS app
 - [electerm online](https://cloud.electerm.org): Public free online electerm app
+- [electerm AI](https://ai.electerm.org): Free AI for electerm users
+- [theme.electerm.org](https://theme.electerm.org): Theme marketplace
 - [electerm demo](https://demo.electerm.org): Online demo of electerm
 - [electerm deb repo](https://repos.electerm.org/deb): Debian repo of electerm
 - [electerm rpm repo](https://repos.electerm.org/rpm): RPM repo of electerm
 - [electerm-locales](https://github.com/electerm/electerm-locales): Language/i18n files for electerm
+- [Huawei AppGallery](https://appgallery.huawei.com/app/detail?id=org.electerm.electerm)
+- [Microsoft Store](https://www.microsoft.com/store/apps/9NCN7272GTFF)
+- [Snap Store](https://snapcraft.io/electerm)
 
 <div align="center">
   <img src="https://github.com/electerm/electerm-resource/raw/master/static/images/electerm.gif", alt="" />
@@ -43,7 +50,7 @@ Open-sourced terminal/ssh/sftp/telnet/serialport/RDP/VNC/Spice/ftp client.
 ## Features
 
 - Works as a terminal/file manager or ssh/sftp/ftp/telnet/serialport/RDP/VNC/Spice client
-- Support Window 7+(X64/ARM64), Mac OS 10.15+(x64/arm64), Linux(x64/arm64/Loong64), even old Linux with glibc 2.17+ like UOS/Kylin/Ubuntu 18.04 etc
+- Support Window 7+(X64/ARM64), HarmonyOS, Android, Mac OS 10.15+(x64/arm64), Linux(x64/arm64/Loong64 new world & old world), even old Linux with glibc 2.17+ like UOS/Kylin/Ubuntu 18.04 etc
 - Global hotkey to toggle window visibility (similar to guake, default is `ctrl + 2`)
 - Multi platform
 - 🇺🇸 🇨🇳 🇧🇷 🇷🇺 🇪🇸 🇫🇷 🇹🇷 🇭🇰 🇯🇵 🇸🇦 🇩🇪 🇰🇷 🇮🇩 🇵🇱 Multi-language support([electerm-locales](https://github.com/electerm/electerm-locales), contributions/fixes welcome)
