@@ -22,7 +22,11 @@ Web demo of [electerm](https://github.com/electerm/electerm) app, running in bro
 
 Visit: [https://demo.electerm.org](https://demo.electerm.org)
 
-Open-sourced terminal/ssh/sftp/ftp/telnet/serialport/RDP/VNC/Spice client (Linux, Mac, Windows, Android, HarmonyOS).
+Open-sourced terminal/ssh/sftp/ftp/telnet/serialport/RDP/VNC/Spice client (Linux, Mac, Windows, Android, HarmonyOS, iOS).
+
+## About electerm
+
+Besides the mainstream Windows / macOS / Linux / Android platforms, electerm also supports HarmonyOS, iOS, and older systems such as Ubuntu 18, Windows 7, macOS 10+, as well as domestic Linux distributions like UOS, Kylin, and LoongArch (both old-world and new-world).
 
 ## Related projects/sites
 
@@ -32,13 +36,15 @@ Open-sourced terminal/ssh/sftp/ftp/telnet/serialport/RDP/VNC/Spice client (Linux
 - [electerm-web-docker](https://github.com/electerm/electerm-web-docker): Docker image for electerm-web
 - [electerm-android](https://github.com/electerm/electerm-android): Android app
 - [electerm-harmony](https://github.com/electerm/electerm-harmony): HarmonyOS app
+- [electerm-ios](https://github.com/electerm/electerm-ios): iOS app
 - [electerm online](https://cloud.electerm.org): Public free online electerm app
 - [electerm AI](https://ai.electerm.org): Free AI for electerm users
-- [theme.electerm.org](https://theme.electerm.org): Theme marketplace
+- [theme.electerm.org](https://theme.electerm.org): Theme live editor, live preview & sharing
 - [electerm demo](https://demo.electerm.org): Online demo of electerm
 - [electerm deb repo](https://repos.electerm.org/deb): Debian repo of electerm
 - [electerm rpm repo](https://repos.electerm.org/rpm): RPM repo of electerm
 - [electerm-locales](https://github.com/electerm/electerm-locales): Language/i18n files for electerm
+- [Apple App Store](https://apps.apple.com/cn/app/electerm/id6792971552)
 - [Huawei AppGallery](https://appgallery.huawei.com/app/detail?id=org.electerm.electerm)
 - [Microsoft Store](https://www.microsoft.com/store/apps/9NCN7272GTFF)
 - [Snap Store](https://snapcraft.io/electerm)
