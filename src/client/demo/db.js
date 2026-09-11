@@ -14,6 +14,7 @@ const tables = [
   'dbUpgradeLog',
   'profiles',
   'workspaces',
+  'triggers',
   'history',
   'terminalCommandHistory',
   'aiChatHistory',
