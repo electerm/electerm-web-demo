@@ -1,6 +1,24 @@
 {
   "bookmarks": [
     {
+      "id": "demo-ssh",
+      "title": "demo-ssh",
+      "host": "electerm-demo",
+      "username": "demo",
+      "authType": "password",
+      "password": "demo",
+      "port": 22,
+      "term": "xterm-256color",
+      "encode": "utf-8",
+      "enableSsh": true,
+      "enableSftp": true,
+      "envLang": "en_US.UTF-8",
+      "loginScriptDelay": 500,
+      "sshTunnels": [],
+      "connectionHoppings": [],
+      "proxy": ""
+    },
+    {
       "id": "-5R-D3Y",
       "title": "local-ls1(1)raw",
       "type": "local",

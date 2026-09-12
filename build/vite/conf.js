@@ -72,11 +72,18 @@ export default defineConfig({
       // '@xterm/addon-unicode11': resolve(fakePath, 'xterm-addon.js'),
       '@xterm/addon-webgl': resolve(fakePath, 'xterm-addon.js'),
       'react-markdown': resolve(fakePath, 'react-markdown.jsx'),
+      // Demo has no real RDP/VNC/SPICE server, use tiny fake libs so the
+      // real heavy clients (noVNC ~800KB, ironrdp WASM several MB,
+      // spice-html5) are never bundled. The session components are
+      // lazy-loaded, so these fakes keep those chunks tiny too.
+      // Must alias both the bare specifier (used by dynamic import()) and
+      // the deep core path.
+      '@novnc/novnc': resolve(fakePath, 'novnc-entry.js'),
       '@novnc/novnc/core/rfb.js': resolve(fakePath, 'novnc.js'),
-      'zmodem-ts/dist/zsentry.js': resolve(fakePath, 'zmodem.js'),
-      '@novnc/novnc/core/rfb': resolve(cwd, 'src/client/web-components/empty.js'),
-      'ironrdp-wasm': resolve(cwd, 'src/client/web-components/empty.js'),
-      'spice-client': resolve(cwd, 'src/client/web-components/empty.js')
+      '@novnc/novnc/core/rfb': resolve(fakePath, 'novnc.js'),
+      'ironrdp-wasm': resolve(fakePath, 'ironrdp-wasm.js'),
+      'spice-client': resolve(fakePath, 'spice-client.js'),
+      'zmodem-ts/dist/zsentry.js': resolve(fakePath, 'zmodem.js')
     }
   }
 })

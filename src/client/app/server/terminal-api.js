@@ -4,6 +4,7 @@
 
 import { terminals } from './remote-common.js'
 import { terminal, testConnection } from './session.js'
+import { fakeExecResult, fakeRunCmdResult } from '../../demo/fake-shell.js'
 
 const cmdMapper = {
   uptime: 'up 20 weeks, 6 hours, 22 minutes',
@@ -83,12 +84,45 @@ const cmdMapper = {
 }
 export function runCmd (ws, msg) {
   const { id, pid, sessionId, cmd } = msg
-  const term = terminals(pid, sessionId)
-  const txt = cmdMapper[cmd] || term.runCmd(cmd)
+  let txt
+  try {
+    const term = pid || sessionId ? terminals(pid, sessionId) : null
+    if (cmdMapper[cmd]) {
+      txt = cmdMapper[cmd]
+    } else if (term && typeof term.runCmd === 'function') {
+      txt = term.runCmd(cmd)
+    } else {
+      // Demo has no real pty — answer from the fake shell/monitor dataset
+      // so shell detection, owner lists, file-info modals, etc. keep working.
+      txt = fakeRunCmdResult(cmd)
+    }
+  } catch (e) {
+    txt = fakeRunCmdResult(cmd)
+  }
   // console.log('msg', msg, txt)
   ws.send({
     id,
     data: txt
+  }, false)
+}
+
+// exec-cmd powers the remote-monitor bar + terminal info side panel
+// (see remote-monitor/monitor-model.js REMOTE_MONITOR_COMMANDS).
+// Return the exec-shaped result the client parses: { stdout, stderr,
+// exitCode, ... } also accepted as plain string by commandResult().
+export function execCmd (ws, msg) {
+  const { id, cmd, command } = msg
+  const raw = cmd || command || ''
+  const stdout = fakeExecResult(raw)
+  ws.send({
+    id,
+    data: {
+      stdout,
+      stderr: '',
+      exitCode: 0,
+      timedOut: false,
+      sampleTimestamp: Date.now()
+    }
   }, false)
 }
 

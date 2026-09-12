@@ -19,10 +19,12 @@ import {
   testTerm,
   resize,
   runCmd,
+  execCmd,
   toggleTerminalLog,
   toggleTerminalLogTimestamp
 } from './terminal-api.js'
 import { runSync } from '../../demo/run-sync.js'
+import { handleTerminalInput } from '../../demo/fake-shell.js'
 
 self.upgradeInsts = {}
 
@@ -31,28 +33,19 @@ self.sessions = {}
 
 export default function initWs (ws, data) {
   const { url } = ws
-  const promote = 'electerm demo terminal $ '
   if (url.includes('/terminals/')) {
-    if (data.includes('\r')) {
-      // Build the full input from cache + current data.
-      // Only send the command *output* back to the terminal, not the
-      // input itself — FakeWs.send() already echoes every keystroke to
-      // the terminal via its message listeners, so including the input
-      // here would render it a second time (e.g. an extra "ls").
-      const input = (ws.cache || '') + data
-      let response
-      if (input.trim() === 'ls') {
-        response = `\r\n\r\nDownloads\r\nDocuments\r\na.jpg\r\n\r\n${promote}`
-      } else if (!input.trim()) {
-        response = `\r\n${promote}`
-      } else {
-        response = `\r\nOnly support ls command\r\n${promote}`
-      }
-      ws.cache = ''
-      ws._send(response, false)
-    } else {
-      ws.cache = (ws.cache || '') + data
+    // Interactive fake shell: data is raw keystrokes (string). The shell
+    // owns echo + line editing + history,FS,cmds (see demo/fake-shell.js).
+    // data may arrive as {data} event object when routed via worker, or as
+    // raw string when sent directly through FakeWs.
+    const raw = typeof data === 'string'
+      ? data
+      : (data && typeof data.data === 'string' ? data.data : null)
+    if (raw !== null) {
+      handleTerminalInput(ws, raw)
+      return
     }
+    // Non-string payload on a terminal socket (e.g. zmodem events): ignore
     return
   }
 
@@ -133,6 +126,8 @@ export default function initWs (ws, data) {
       toggleTerminalLogTimestamp(ws, msg)
     } else if (action === 'run-cmd') {
       runCmd(ws, msg)
+    } else if (action === 'exec-cmd') {
+      execCmd(ws, msg)
     } else if (action === 'runSync') {
       runSync(ws, msg)
     }

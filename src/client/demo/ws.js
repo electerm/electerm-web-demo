@@ -1,6 +1,7 @@
 // A fake WebSocket class
 import { extractInfoFromURL } from './ws-handler'
 import handler from '../app/server/dispatch-center.js'
+import { welcomeBanner, promptFor, getShellState } from './fake-shell.js'
 export class FakeWs {
   static OPEN = 1
   // A constructor that takes a URL as an argument
@@ -42,37 +43,9 @@ export class FakeWs {
 
   init () {
     console.log('init terminal')
-    this.sendToTerminal(
-      '\r\n🚀 Welcome to Electerm Demo Terminal! 🚀\r\n'
-    )
-    this.sendToTerminal(
-      '\r\n📖 About Electerm:\r\n'
-    )
-    this.sendToTerminal(
-      '   A modern, open-sourced terminal/ssh/sftp/ftp/telnet/serialport/RDP/VNC/Spice client\r\n'
-    )
-    this.sendToTerminal(
-      '\r\n🔗 Links:\r\n'
-    )
-    this.sendToTerminal(
-      '   • GitHub: https://github.com/electerm/electerm\r\n'
-    )
-    this.sendToTerminal(
-      '   • Website: https://electerm.org\r\n'
-    )
-    this.sendToTerminal(
-      '\r\n💡 Demo Commands:\r\n'
-    )
-    this.sendToTerminal(
-      '   • Type "ls" to list files\r\n'
-    )
-    this.sendToTerminal(
-      '   • This is a limited demo - download the full version for complete features!\r\n'
-    )
-    // Show every terminal color defined in the current theme, but only when
-    // the page URL carries ?showThemeColor=1. Each name is rendered in its own
-    // color via ANSI SGR codes, so xterm applies whatever theme (default /
-    // light / custom) is currently active.
+    const st = getShellState(this)
+    this.sendToTerminal(welcomeBanner())
+    // Show theme colors when ?showThemeColor=1 (kept from previous demo)
     const showThemeColor = typeof window !== 'undefined' &&
       new URLSearchParams(window.location.search).get('showThemeColor') === '1'
     if (showThemeColor) {
@@ -91,9 +64,7 @@ export class FakeWs {
     this.sendToTerminal(
       '\r\n────────────────────────────────────────────────────────────────\r\n'
     )
-    this.sendToTerminal(
-      '\r\nelecterm demo terminal $ '
-    )
+    this.sendToTerminal(promptFor(st))
   }
 
   // Method to send messages directly to terminal without triggering command processing
@@ -160,7 +131,13 @@ export class FakeWs {
     }
   }
 
-  // A method to send a message
+  // A method to send a message.
+  // Direction matters (like a real socket):
+  // - client -> server: send(data) with notify !== false → only reaches
+  //   onmessage (server handler), NOT echoed to terminal listeners.
+  //   The fake shell owns the echo so it can do line editing/history.
+  // - server -> client: send(data, false) → only reaches message listeners
+  //   (terminal display), does not re-enter the command processor.
   send (data, notify) {
     // Check if the readyState is 1 (OPEN)
     if (this.readyState === 1) {
@@ -172,22 +149,25 @@ export class FakeWs {
           data,
           target: this
         }
-        // Call the onmessage method if it is a function
-        if (notify !== false && typeof this.onmessage === 'function') {
-          this.onmessage(event)
-        }
-        // Call the event listeners for the message event if they exist
-        if (this.listeners.message) {
-          for (const listener of this.listeners.message) {
-            listener(event)
+        if (notify === false) {
+          // server -> client display path
+          if (this.listeners.message) {
+            for (const listener of this.listeners.message) {
+              listener(event)
+            }
           }
+          return
+        }
+        // client -> server path, no local echo
+        if (typeof this.onmessage === 'function') {
+          this.onmessage(event)
         }
       }, 1) // Wait for 1 second
     }
   }
 
   _send (data, notify) {
-    // Check if the readyState is 1 (OPEN)
+    // Same direction semantics as send()
     if (this.readyState === 1) {
       // Simulate the sending process
       setTimeout(() => {
@@ -197,15 +177,16 @@ export class FakeWs {
           data,
           target: this
         }
-        // Call the onmessage method if it is a function
-        if (notify !== false && typeof this.onmessage === 'function') {
-          this.onmessage(event)
-        }
-        // Call the event listeners for the message event if they exist
-        if (this.listeners.message) {
-          for (const listener of this.listeners.message) {
-            listener(event)
+        if (notify === false) {
+          if (this.listeners.message) {
+            for (const listener of this.listeners.message) {
+              listener(event)
+            }
           }
+          return
+        }
+        if (typeof this.onmessage === 'function') {
+          this.onmessage(event)
         }
       }, 1) // Wait for 1 second
     }
