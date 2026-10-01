@@ -119,3 +119,11 @@ dist
 /src/client/electerm-react
 .vercel
 .workbuddy
+.kilo
+.codeartsdoer
+# electerm demo MCP + intro video pipeline artifacts
+/video/shots
+/video/audio
+/video/dist
+.workbuddy-ai
+/mcp
