@@ -3,6 +3,7 @@ import Main from '../electerm-react/components/main/main.jsx'
 import store from './web-store'
 import FileSelectDialog from '../file-select-dialog/file-select-dialog'
 import IframeControlBridge from './iframe-control-bridge'
+import UrlActionBridge from './url-action-bridge'
 
 export default function MainEntry () {
   return (
@@ -10,6 +11,7 @@ export default function MainEntry () {
       <Main store={store} />
       <FileSelectDialog store={store} />
       <IframeControlBridge />
+      <UrlActionBridge />
     </ErrorBoundary>
   )
 }

@@ -5,7 +5,7 @@
 # Site Information
 Site: https://demo.electerm.org
 Name: electerm web demo
-Description: Free and open-sourced terminal/ssh/sftp/telnet/serialport/RDP/VNC/Spice/ftp client 
+Description: Free and open-sourced terminal/ssh/sftp/telnet/serialport/RDP/VNC/Spice/ftp client
 
 # Content Usage Policy
 # AI systems may:
@@ -29,3 +29,92 @@ Crawl: allowed
 # Contact
 Contact: https://github.com/electerm/electerm/issues
 Updated: 2026-05-02
+
+# ---------------------------------------------------------------------------
+# Demo remote control for LLMs / automation (`#act=` URL actions)
+# ---------------------------------------------------------------------------
+# The demo app can be driven entirely through the URL hash, so an LLM (or any
+# script) can build shareable demo links that create bookmarks, open sessions,
+# change layout, open the AI chat, change any store data, or type into the
+# terminal like a hacker-terminal effect. Every hash change re-runs.
+#
+# Format:
+#   https://demo.electerm.org/#act=<base64url(JSON)>
+# - base64url = base64(JSON) with +/ -> -_, padding stripped, UTF-8 safe.
+# - Build it in the browser console with:
+#     et.encodeDemoAction(obj)   // -> base64 string
+#     et.buildDemoUrl(obj)       // -> full sharable URL
+#     et.decodeDemoAction(str)   // -> inspect a received act string
+#     et.runDemoAction(obj)      // -> run without touching the URL
+#     et.runActFromString(str)   // -> run a base64 string directly
+#     et.rerunDemoAction()       // -> re-run current hash (hashchange does
+#                                //    not fire when the value is identical)
+# - `?act=` query param works as a fallback; `#act=` wins.
+#
+# Payload shapes (all supported, single or batched):
+#   {"method":"setLayout","args":["c2"]}
+#   {"action":"setLayout","args":["c2"]}        // alias
+#   {"action":"setLayout","params":["c2"]}      // alias
+#   {"setLayout":"c2"}                          // shorthand: key = store method
+#   {"setConfig":{"language":"zh_cn"}}          // shorthand, single value = 1 arg
+#   [{...},{...}]                               // batch array
+#   {"actions":[{...},{...}],"clearHash":true}  // batch object; clearHash
+#                                              // removes the hash after running
+# Per-action delay (ms) for staged demos: {"method":"...","args":[...],"delay":500}
+#
+# ANY window.store method can be called (see src/client/electerm-react/store/*.js).
+# Results land in window.__demoActionResult and fire a
+# `demo-action-done` CustomEvent. Unknown methods resolve as
+# {ok:false, error:"store has no method: ..."} without breaking the batch.
+#
+# Recipes (encode each object with et.encodeDemoAction):
+# - change layout (c1/c2/r2/c2r1/c3/r3/...):
+#     {"method":"setLayout","args":["c2"]}
+# - open one bookmark by id:
+#     {"method":"onSelectBookmark","args":["demo-ssh"]}
+# - open several bookmarks:
+#     {"method":"openBookmarks","args":[["demo-ssh"]]}
+# - create a bookmark (second arg is the collection name):
+#     {"method":"addItem","args":[{"id":"tmp1","title":"tmp","host":"1.2.3.4","username":"root"},"bookmarks"]}
+# - open AI chat panel:
+#     {"method":"handleOpenAIPanel","args":[]}
+# - toggle AI / info / cmd-history / quick-command panels:
+#     {"method":"toggleAIPanel","args":[]}
+#     {"method":"toggleInfoPanel","args":[]}
+#     {"method":"toggleCmdHistoryPanel","args":[]}
+# - change any store data:
+#     {"method":"storeAssign","args":[{"rightPanelVisible":true}]}
+# - change config (theme, language, ...):
+#     {"method":"setConfig","args":[{"theme":"defaultLight"}]}
+#     {"method":"setConfig","args":[{"language":"zh_cn"}]}
+# - new empty tab:
+#     {"method":"addTab","args":[]}
+# - batch example (layout + AI chat):
+#     {"actions":[{"method":"setLayout","args":["c2"]},{"method":"handleOpenAIPanel","args":[]}]}
+#
+# Hacker-terminal echo / typing (writes into the CURRENT terminal):
+# - instant display-only write (no execution):
+#     {"method":"echoToTerminal","args":["hello hacker\nline2"]}
+#     {"method":"echoToTerminal","args":["hi", {"tabId":"<tab-id>"}]}
+# - typed effect, char by char (display only, default 120 cps):
+#     {"method":"typeInTerminal","args":["sudo rm -rf / --no-preserve-root"]}
+#     {"method":"typeInTerminal","args":["whoami", {"cps":60,"enter":true}]}
+#     {"method":"typeInTerminal","args":["ls -la", {"cps":30,"mode":"input","enter":true}]}
+#   options: cps (chars/sec), enter (send Enter at end / execute),
+#     newline (append newline, display mode), mode ("display" = screen only,
+#     "input" = type into shell input so the fake shell reacts),
+#     tabId (default: active tab).
+# - clear screen / stop a running typing effect:
+#     {"method":"clearTerminal","args":[]}
+#     {"method":"stopTyping","args":[]}
+# - run a command immediately (no typing effect):
+#     {"method":"runQuickCommand","args":["ls -la"]}
+#     {"method":"runCommandInTerminal","args":["ls -la"]}
+#
+# Iframe embedding (cross-origin safe postMessage alternative):
+#   parent -> iframe: {source:"parent-control", type:"ping"} then
+#     {source:"parent-control", method, args, id}
+#   iframe -> parent: {source:"demo-control", type:"ready"} and
+#     {source:"demo-control", id, ok, result|error}
+# The same method names (incl. echoToTerminal/typeInTerminal) work there.
+# See src/client/views/control.pug for a working demo page.

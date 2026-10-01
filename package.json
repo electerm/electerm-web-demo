@@ -17,6 +17,9 @@
     "install": "node build/bin/install",
     "lint": "./node_modules/.bin/standard --verbose",
     "fix": "./node_modules/.bin/standard --fix",
+    "test": "node --test \"src/tests/unit/*.test.js\" \"src/tests/e2e/*.test.js\"",
+    "test:unit": "node --test \"src/tests/unit/*.test.js\"",
+    "test:e2e": "node --test \"src/tests/e2e/*.test.js\"",
     "lock": "npm i --package-lock-only",
     "r": "./build/bin/release",
     "cf:deploy": "./build/bin/deploy-cloudflare.sh"
