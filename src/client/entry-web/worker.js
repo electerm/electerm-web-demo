@@ -26,17 +26,64 @@ function createWs (
     ws.send(JSON.stringify(msg))
   }
   ws.id = id
+  // Buffer incoming messages until at least one `message` listener is
+  // registered. Nothing else listens on this socket before the client sends
+  // an `addEventListener` action, so anything the server sends in that window
+  // is otherwise dropped on the floor — e.g. the `session-interactive` prompt
+  // sent during SSH host-key verification on a first connect, which leaves the
+  // connection hanging forever waiting for an answer that never arrives.
+  ws._messageBuffer = []
+  ws._bufferActive = true
+  ws._bufferHandler = (evt) => {
+    if (ws._bufferActive) {
+      ws._messageBuffer.push(evt.data)
+    }
+  }
+  ws.addEventListener('message', ws._bufferHandler)
+  // Pending one-shot listeners by message id. A prompt (MFA code, host key
+  // trust) can be taken back before it is ever answered -- the server then
+  // sends `session-interactive-close` for that id -- and a retried prompt
+  // re-registers, so without a way to drop the old listener every abandoned
+  // prompt would leave one behind on this long-lived socket.
+  ws.onceDisposers = new Map()
+  // Returns a disposer, same contract as the server-side ws.once.
   ws.once = (callack, id) => {
-    const func = (evt) => {
-      const arg = safeJSONParse(evt.data)
-      if (id === arg.id && arg.data) {
-        callack(arg)
-        ws.removeEventListener('message', func)
+    // Re-registering the same id replaces the old listener instead of stacking
+    // a second one on top of it.
+    const previous = ws.onceDisposers.get(id)
+    if (previous) {
+      previous()
+    }
+    let func
+    const dispose = () => {
+      if (!func) {
+        return
+      }
+      ws.removeEventListener('message', func)
+      func = null
+      if (ws.onceDisposers.get(id) === dispose) {
+        ws.onceDisposers.delete(id)
       }
     }
+    func = (evt) => {
+      const arg = safeJSONParse(evt.data)
+      if (!arg || id !== arg.id) {
+        return
+      }
+      dispose()
+      callack(arg)
+    }
+    ws.onceDisposers.set(id, dispose)
     ws.addEventListener('message', func)
+    return dispose
   }
   ws.onclose = () => {
+    if (ws.onceDisposers) {
+      for (const dispose of [...ws.onceDisposers.values()]) {
+        dispose()
+      }
+      ws.onceDisposers.clear()
+    }
     if (ws.dup) {
       return
     }
@@ -108,6 +155,8 @@ async function onMsg (e) {
           data
         })
       }
+      // the disposer lives on ws.onceDisposers, so a later removeEventListener
+      // with this id can drop a prompt the caller no longer wants an answer to
       ws.once(cb, id)
     }
   } else if (action === 'close') {
@@ -123,7 +172,17 @@ async function onMsg (e) {
   } else if (action === 'addEventListener') {
     const ws = self.insts[wsId]
     if (ws) {
-      ws.cb = (e) => {
+      // Support multiple listeners using a Map keyed by listener ID.
+      // NB: FakeWs owns `ws.listeners` (its own type -> handlers registry),
+      // so the worker keeps its bookkeeping under a separate name.
+      if (!ws._listeners) {
+        ws._listeners = new Map()
+      }
+      // Check if this listener ID already exists (prevent duplicates for same ID)
+      if (ws._listeners.has(id)) {
+        ws.removeEventListener(type, ws._listeners.get(id).cb)
+      }
+      const cb = (e) => {
         send({
           wsId,
           id,
@@ -132,18 +191,51 @@ async function onMsg (e) {
           }
         })
       }
-      ws.addEventListener(type, ws.cb)
+      ws._listeners.set(id, { type, cb })
+      ws.addEventListener(type, cb)
+      // Flush the backlog to the newly registered listener, then stop
+      // buffering: from here on messages go straight to the callback above.
+      // The array is kept for a few seconds so a second addEventListener call
+      // can also see the backlog.
+      if (type === 'message' && ws._messageBuffer && ws._messageBuffer.length > 0) {
+        for (const bufData of ws._messageBuffer) {
+          send({
+            wsId,
+            id,
+            data: {
+              data: bufData
+            }
+          })
+        }
+      }
+      if (type === 'message' && ws._bufferActive) {
+        ws._bufferActive = false
+        if (ws._bufferHandler) {
+          ws.removeEventListener('message', ws._bufferHandler)
+          ws._bufferHandler = null
+        }
+        setTimeout(() => {
+          ws._messageBuffer = null
+        }, 5000)
+      }
     }
   } else if (action === 'removeEventListener') {
     const ws = self.insts[wsId]
-    if (ws) {
-      ws.removeEventListener(type, ws.cb)
-      delete ws.cb
+    // a pending one-shot (a prompt that was taken back) is not in ws._listeners
+    if (ws && ws.onceDisposers && ws.onceDisposers.has(id)) {
+      ws.onceDisposers.get(id)()
+    }
+    if (ws && ws._listeners && ws._listeners.has(id)) {
+      const listener = ws._listeners.get(id)
+      ws.removeEventListener(listener.type, listener.cb)
+      ws._listeners.delete(id)
     }
   }
 }
 
 self.addEventListener('message', onMsg)
-send({
-  action: 'worker-init'
-})
+setTimeout(() => {
+  send({
+    action: 'worker-init'
+  })
+}, 10)

@@ -1,6 +1,6 @@
 {
   "name": "electerm-web-demo",
-  "version": "5.6.10",
+  "version": "5.7.5",
   "description": "Running electerm in as web app",
   "main": "src/app/app.js",
   "type": "module",
@@ -49,13 +49,13 @@
   "preferGlobal": true,
   "devDependencies": {
     "@ant-design/icons": "^6.2.5",
-    "@electerm/electerm-locales": "2.3.33",
-    "@electerm/electerm-react": "^5.6.10",
+    "@electerm/electerm-locales": "2.3.35",
+    "@electerm/electerm-react": "^5.7.6",
     "@electerm/electerm-resource": "2.2.1",
     "@electerm/electerm-themes": "^1.0.2",
     "@fontsource/maple-mono": "^5.2.6",
     "@novnc/novnc": "^1.7.0",
-    "@types/node": "22.9.3",
+    "@types/node": "^22.20.5",
     "@vitejs/plugin-react": "5.2.0",
     "@xterm/addon-attach": "0.13.0-beta.301",
     "@xterm/addon-fit": "0.12.0-beta.299",
@@ -93,7 +93,7 @@
     "shelljs": "0.8.5",
     "standard": "^17.1.2",
     "stylus": "^0.64.0",
-    "vite": "^8.0.15"
+    "vite": "^8.3.5"
   },
   "standard": {
     "globals": [
