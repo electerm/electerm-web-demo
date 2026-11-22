@@ -66,16 +66,16 @@ export function runSync (ws, msg) {
     // renderer then rejects with "Error: undefined". Send the fields the
     // client actually reads. Always reply, or the renderer's promise is left
     // unsettled forever.
-    return ws.s({
+    return ws.send({
       error: {
         message: err && err.message ? err.message : String(err),
         stack: err && err.stack ? err.stack : ''
       },
       id
-    })
+    }, false)
   }
-  ws.s({
+  ws.send({
     data,
     id
-  })
+  }, false)
 }

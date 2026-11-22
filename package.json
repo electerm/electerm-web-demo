@@ -1,6 +1,6 @@
 {
   "name": "electerm-web-demo",
-  "version": "5.9.0",
+  "version": "5.12.6",
   "description": "Running electerm in as web app",
   "main": "src/app/app.js",
   "type": "module",
@@ -49,8 +49,8 @@
   "preferGlobal": true,
   "devDependencies": {
     "@ant-design/icons": "^6.2.5",
-    "@electerm/electerm-locales": "2.3.39",
-    "@electerm/electerm-react": "5.9.1",
+    "@electerm/electerm-locales": "2.3.42",
+    "@electerm/electerm-react": "5.12.7",
     "@electerm/electerm-resource": "2.2.1",
     "@electerm/electerm-themes": "^1.0.2",
     "@fontsource/maple-mono": "^5.2.6",
@@ -111,5 +111,13 @@
       "/public/"
     ],
     "sourceType": "module"
+  },
+  "overrides": {
+    "qs": "^6.17.1",
+    "body-parser": "^2.4.0",
+    "minimatch@10": "^11.0.5",
+    "stylus": {
+      "glob": "^14.0.6"
+    }
   }
 }
