@@ -7,9 +7,8 @@ export default {
     ...data.config,
     ...defaultConfig,
     useSystemTitleBar: true,
-    // Demo: show the remote monitor bar by default so visitors immediately
-    // see the (faked) server info. Real default in default-setting.js stays
-    // false; this demo-only override wins because it spreads last.
+    // The monitor bar needs an active SSH session.
+    onStartSessions: ['demo-ssh'],
     remoteMonitorBarEnabled: true
   }
 }

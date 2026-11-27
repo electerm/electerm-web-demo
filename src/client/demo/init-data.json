@@ -1245,7 +1245,7 @@
     {
       "id": "trigger-apt-confirm",
       "name": "Auto-confirm apt prompt",
-      "enabled": true,
+      "enabled": false,
       "match": {
         "type": "regex",
         "value": "Do you want to continue\\? \\[Y/n\\]",
@@ -1262,7 +1262,7 @@
     {
       "id": "trigger-sudo-notify",
       "name": "Notify on sudo password prompt",
-      "enabled": true,
+      "enabled": false,
       "match": {
         "type": "text",
         "value": "[sudo] password",
